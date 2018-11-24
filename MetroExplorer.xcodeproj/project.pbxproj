@@ -12,6 +12,16 @@
 		9D11E212219A52390035D45F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E210219A52390035D45F /* Main.storyboard */; };
 		9D11E214219A523A0035D45F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E213219A523A0035D45F /* Assets.xcassets */; };
 		9D11E217219A523A0035D45F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E215219A523A0035D45F /* LaunchScreen.storyboard */; };
+		9D8FFD5A219A9D8E001CED35 /* NSTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FFD59219A9D8E001CED35 /* NSTableViewController.swift */; };
+		9D8FFD5C219A9DC3001CED35 /* SSTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FFD5B219A9DC3001CED35 /* SSTableViewController.swift */; };
+		9D8FFD5E219A9E93001CED35 /* NearestStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FFD5D219A9E93001CED35 /* NearestStation.swift */; };
+		9D8FFD60219A9EF0001CED35 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FFD5F219A9EF0001CED35 /* SampleData.swift */; };
+		9DC397D521A0F4A7009F959C /* StationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC397D421A0F4A7009F959C /* StationCell.swift */; };
+		9DEB3E6D21A6650A00B58A21 /* WMATAAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E6C21A6650A00B58A21 /* WMATAAPIManager.swift */; };
+		9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */; };
+		9DEB3E7321A7DC9C00B58A21 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7221A7DC9C00B58A21 /* CollectionViewController.swift */; };
+		9DEB3E7521AA12D200B58A21 /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */; };
+		9DFAE74A21A517D50067E128 /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFAE74921A517D50067E128 /* Stations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +32,16 @@
 		9D11E213219A523A0035D45F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D11E216219A523A0035D45F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D11E218219A523A0035D45F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D8FFD59219A9D8E001CED35 /* NSTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTableViewController.swift; sourceTree = "<group>"; };
+		9D8FFD5B219A9DC3001CED35 /* SSTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSTableViewController.swift; sourceTree = "<group>"; };
+		9D8FFD5D219A9E93001CED35 /* NearestStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestStation.swift; sourceTree = "<group>"; };
+		9D8FFD5F219A9EF0001CED35 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		9DC397D421A0F4A7009F959C /* StationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCell.swift; sourceTree = "<group>"; };
+		9DEB3E6C21A6650A00B58A21 /* WMATAAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WMATAAPIManager.swift; sourceTree = "<group>"; };
+		9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		9DEB3E7221A7DC9C00B58A21 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
+		9DFAE74921A517D50067E128 /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +74,48 @@
 		9D11E20B219A52390035D45F /* MetroExplorer */ = {
 			isa = PBXGroup;
 			children = (
+				9DDC8DC721A513F20003B636 /* models */,
+				9DDC8DC621A513A80003B636 /* view controllers */,
+				9DDC8DC521A5138B0003B636 /* manager */,
 				9D11E20C219A52390035D45F /* AppDelegate.swift */,
-				9D11E20E219A52390035D45F /* ViewController.swift */,
 				9D11E210219A52390035D45F /* Main.storyboard */,
 				9D11E213219A523A0035D45F /* Assets.xcassets */,
 				9D11E215219A523A0035D45F /* LaunchScreen.storyboard */,
 				9D11E218219A523A0035D45F /* Info.plist */,
+				9D8FFD5F219A9EF0001CED35 /* SampleData.swift */,
+				9DC397D421A0F4A7009F959C /* StationCell.swift */,
+				9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */,
 			);
 			path = MetroExplorer;
+			sourceTree = "<group>";
+		};
+		9DDC8DC521A5138B0003B636 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				9DEB3E6C21A6650A00B58A21 /* WMATAAPIManager.swift */,
+			);
+			path = manager;
+			sourceTree = "<group>";
+		};
+		9DDC8DC621A513A80003B636 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9D8FFD5B219A9DC3001CED35 /* SSTableViewController.swift */,
+				9D8FFD59219A9D8E001CED35 /* NSTableViewController.swift */,
+				9D11E20E219A52390035D45F /* ViewController.swift */,
+				9DEB3E7221A7DC9C00B58A21 /* CollectionViewController.swift */,
+				9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */,
+			);
+			path = "view controllers";
+			sourceTree = "<group>";
+		};
+		9DDC8DC721A513F20003B636 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				9DFAE74921A517D50067E128 /* Stations.swift */,
+				9D8FFD5D219A9E93001CED35 /* NearestStation.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +189,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DEB3E7521AA12D200B58A21 /* StationDetailViewController.swift in Sources */,
+				9D8FFD5A219A9D8E001CED35 /* NSTableViewController.swift in Sources */,
+				9D8FFD60219A9EF0001CED35 /* SampleData.swift in Sources */,
+				9DC397D521A0F4A7009F959C /* StationCell.swift in Sources */,
+				9DEB3E6D21A6650A00B58A21 /* WMATAAPIManager.swift in Sources */,
+				9D8FFD5E219A9E93001CED35 /* NearestStation.swift in Sources */,
 				9D11E20F219A52390035D45F /* ViewController.swift in Sources */,
 				9D11E20D219A52390035D45F /* AppDelegate.swift in Sources */,
+				9DFAE74A21A517D50067E128 /* Stations.swift in Sources */,
+				9D8FFD5C219A9DC3001CED35 /* SSTableViewController.swift in Sources */,
+				9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */,
+				9DEB3E7321A7DC9C00B58A21 /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +347,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9YZAA7W457;
 				INFOPLIST_FILE = MetroExplorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,6 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9YZAA7W457;
 				INFOPLIST_FILE = MetroExplorer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
