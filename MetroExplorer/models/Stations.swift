@@ -8,10 +8,12 @@
 
 import Foundation
 
-struct Station {
+struct Stations{
     let name: String
     let linecode1: String
     let linecode2: String?
     let linecode3: String?
     let Address: String 
 }
+
+

@@ -21,6 +21,7 @@
 		9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */; };
 		9DEB3E7321A7DC9C00B58A21 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7221A7DC9C00B58A21 /* CollectionViewController.swift */; };
 		9DEB3E7521AA12D200B58A21 /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */; };
+		9DEB3E7721AA68E500B58A21 /* WMATAResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7621AA68E500B58A21 /* WMATAResponse.swift */; };
 		9DFAE74A21A517D50067E128 /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFAE74921A517D50067E128 /* Stations.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		9DEB3E7221A7DC9C00B58A21 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
+		9DEB3E7621AA68E500B58A21 /* WMATAResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMATAResponse.swift; sourceTree = "<group>"; };
 		9DFAE74921A517D50067E128 /* Stations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 			children = (
 				9DFAE74921A517D50067E128 /* Stations.swift */,
 				9D8FFD5D219A9E93001CED35 /* NearestStation.swift */,
+				9DEB3E7621AA68E500B58A21 /* WMATAResponse.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				9D11E20D219A52390035D45F /* AppDelegate.swift in Sources */,
 				9DFAE74A21A517D50067E128 /* Stations.swift in Sources */,
 				9D8FFD5C219A9DC3001CED35 /* SSTableViewController.swift in Sources */,
+				9DEB3E7721AA68E500B58A21 /* WMATAResponse.swift in Sources */,
 				9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */,
 				9DEB3E7321A7DC9C00B58A21 /* CollectionViewController.swift in Sources */,
 			);
