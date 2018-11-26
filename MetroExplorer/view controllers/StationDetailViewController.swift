@@ -9,7 +9,14 @@
 import UIKit
 
 class StationDetailViewController: UIViewController {
-
+    @IBAction func ShareButtonPressed(_ sender: Any) {
+        let shareText = "check out my pushup record"
+        
+        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+        
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
