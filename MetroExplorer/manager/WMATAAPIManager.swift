@@ -53,8 +53,42 @@ class WMATAAPIManager{
             let decoder = JSONDecoder()
             
             do {
+//                let WMATAResponse = decoder.decode(WMATAResponse.self, from: data)
+//
+//                var Stations = [Stations]
+//
+//                for Stations in WMATAResponse.response.Stations {
+//                    let name = Stations.Name.joined(separator: " ")
+//
+//                    for Adress in WMATAResponse.response.Adress{
+//                        let Street = Stations.Adress.Street
+//                    }
+//
+//                    let gym = Gym(name: venue.name, address: address, iconUrl: iconUrl)
+//
+//                    stations.append(stations)
+                }
                 
+//                //now what do we do with the gyms????
+//                print(Stations)
+//
+//                self.delegate?.stationsFound(Stations)
+//
+//
+//            } catch let error {
+//                //if we get here, need to set a breakpoint and inspect the error to see where there is a mismatch between JSON and our Codable model structs
+//                print("codable failed - bad data format")
+//                print(error.localizedDescription)
+//
+//                self.delegate?.stationsNotFound()
+//            }
+    }
+//
+//        print("execute request")
+//        task.resume()
+  }
 }
-}
-}
-}
+    
+                
+
+

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Station : Codable {
+struct WMATAResponse : Codable {
     
     let address : Addres?
     let code : String?
@@ -33,18 +33,7 @@ struct Station : Codable {
         case name = "Name"
       
     }
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        address = try Addres(from: decoder)
-        code = try values.decodeIfPresent(String.self, forKey: .code)
-        lat = try values.decodeIfPresent(Float.self, forKey: .lat)
-        lineCode1 = try values.decodeIfPresent(String.self, forKey: .lineCode1)
-        lineCode2 = try values.decodeIfPresent(String.self, forKey: .lineCode2)
-        lineCode3 = try values.decodeIfPresent(String.self, forKey: .lineCode3)
-        lineCode4 = try values.decodeIfPresent(String.self, forKey: .lineCode4)
-        lon = try values.decodeIfPresent(Float.self, forKey: .lon)
-        name = try values.decodeIfPresent(String.self, forKey: .name)
-    }
+    
     
     struct Addres : Codable {
         
@@ -60,14 +49,6 @@ struct Station : Codable {
             case street = "Street"
             case zip = "Zip"
         }
-//        init(from decoder: Decoder) throws {
-//            let values = try decoder.container(keyedBy: CodingKeys.self)
-//            city = try values.decodeIfPresent(String.self, forKey: .city)
-//            state = try values.decodeIfPresent(String.self, forKey: .state)
-//            street = try values.decodeIfPresent(String.self, forKey: .street)
-//            zip = try values.decodeIfPresent(String.self, forKey: .zip)
-//        }
-        
         
     }
     
