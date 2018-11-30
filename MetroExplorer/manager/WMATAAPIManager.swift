@@ -13,14 +13,18 @@ protocol FetchStationDelegate {
     func stationsNotFound()
 }
 
-class WMATAAPIManager{
+class WMATAAPIManager {
+    // delegate is like interface
     var delegate: FetchStationDelegate?
+    
     func fetchStations() {
         var urlComponents = URLComponents(string:"https://api.wmata.com/Rail.svc/json/jStations?LineCode=GR")!
+        
         urlComponents.queryItems = [
             URLQueryItem(name: "LineCode", value: "GR")
         ]
-        // what's this for?
+        
+        
         let url = urlComponents.url!
         
         var request = URLRequest(url: url)
@@ -53,42 +57,47 @@ class WMATAAPIManager{
             let decoder = JSONDecoder()
             
             do {
-//                let WMATAResponse = decoder.decode(WMATAResponse.self, from: data)
+                let wmataResponse = try decoder.decode(WMATAResponse.self, from: data)
+                
+                var stations = [Station]()
+                
+                for station in wmataResponse.stations{
+//                    let name = station.name!.joined(seperator: " ")
+//                    let address = venue.location.formattedAddress.joined(separator: " ")
 //
-//                var Stations = [Stations]
+//                    let iconPrefix = venue.categories.first?.icon.prefix
+//                    let iconSuffix = venue.categories.first?.icon.suffix
 //
-//                for Stations in WMATAResponse.response.Stations {
-//                    let name = Stations.Name.joined(separator: " ")
+//                    var iconUrl: String? = nil
 //
-//                    for Adress in WMATAResponse.response.Adress{
-//                        let Street = Stations.Adress.Street
-//                    }
-//
+//                    if let iconPrefix = iconPrefix, let iconSuffix = iconSuffix {
+//                        iconUrl = "\(iconPrefix)44\(iconSuffix)"
+                    
+                    let station = Station(name:station.name!, linecode1: station.lineCode1 ?? "None", linecode2: station.lineCode2, linecode3: station.lineCode3, Address: station.address?.city ?? "None")
 //                    let gym = Gym(name: venue.name, address: address, iconUrl: iconUrl)
-//
-//                    stations.append(stations)
+                    stations.append(station)
+                    
                 }
                 
-//                //now what do we do with the gyms????
-//                print(Stations)
-//
-//                self.delegate?.stationsFound(Stations)
-//
-//
-//            } catch let error {
-//                //if we get here, need to set a breakpoint and inspect the error to see where there is a mismatch between JSON and our Codable model structs
-//                print("codable failed - bad data format")
-//                print(error.localizedDescription)
-//
-//                self.delegate?.stationsNotFound()
-//            }
-    }
-//
-//        print("execute request")
-//        task.resume()
-  }
-}
-    
+                //now what do we do with the gyms????
                 
+                print(stations)
+                self.delegate?.stationFound(stations)
+//                self.delegate?.gymsFound(gyms)
+                
+                
+            } catch let error {
+                //if we get here, need to set a breakpoint and inspect the error to see where there is a mismatch between JSON and our Codable model structs
+                print("codable failed - bad data format")
+                print(error.localizedDescription)
+                
+                self.delegate?.stationsNotFound()
+            }
+        }
+        
+        print("execute request")
+        task.resume()
+    }
+}
 
 

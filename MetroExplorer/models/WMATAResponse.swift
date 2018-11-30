@@ -10,6 +10,11 @@ import Foundation
 
 struct WMATAResponse : Codable {
     
+    let stations:[Stations]
+}
+
+struct Stations:Codable{
+    
     let address : Addres?
     let code : String?
     let lat : Float?
