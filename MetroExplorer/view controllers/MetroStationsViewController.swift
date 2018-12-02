@@ -9,27 +9,62 @@
 import UIKit
 
 class MetroStationsViewController: UITableViewController {
+    
+    var stations = [StationModel]() {
+        didSet{
+            tableView.reloadData()
+        }
+    }
 
     
-    var nearestStations = SampleData.generateStationsData()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let fetchMetroStationManager = FetchMetroStationsManager()
+        fetchMetroStationManager.delegate = self 
+        
+        fetchMetroStationManager.fetchStations()
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {        
+        return stations.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StationCell", for: indexPath) as!
+        StationTableViewCell
+     
+        let station = stations[indexPath.row]
+        cell.stationNameLabel.text = station.name
+        cell.stationAddressLabel.text = station.address
+      
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "SelectionSeque2", sender: self)
+    }
     
 }
 
-extension MetroStationsViewController{
+
+
+extension MetroStationsViewController: FetchStationDelegate {
+    func stationFound(_ stations: [StationModel]) {
+        print("stations found - here they are in the controller!")
+        print(stations.count)
+        DispatchQueue.main.async {
+            self.stations = stations
+            
+            
+        }    }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nearestStations.count
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NearestStationCell", for: indexPath)
-        
-        let neareStstations = nearestStations[indexPath.row]
-        cell.textLabel?.text = neareStstations.name
-        cell.detailTextLabel?.text = neareStstations.area
-        return cell
-        
-        
+    func stationsNotFound() {
+        print("no stations found")
     }
 }

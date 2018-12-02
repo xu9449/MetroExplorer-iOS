@@ -11,10 +11,7 @@
 		9D11E212219A52390035D45F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E210219A52390035D45F /* Main.storyboard */; };
 		9D11E214219A523A0035D45F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E213219A523A0035D45F /* Assets.xcassets */; };
 		9D11E217219A523A0035D45F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E215219A523A0035D45F /* LaunchScreen.storyboard */; };
-		9D8FFD5E219A9E93001CED35 /* NearestStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FFD5D219A9E93001CED35 /* NearestStation.swift */; };
-		9D8FFD60219A9EF0001CED35 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FFD5F219A9EF0001CED35 /* SampleData.swift */; };
-		9DC397D521A0F4A7009F959C /* StationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC397D421A0F4A7009F959C /* StationCell.swift */; };
-		9DEB3E6D21A6650A00B58A21 /* WMATAAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E6C21A6650A00B58A21 /* WMATAAPIManager.swift */; };
+		9DD25B6321B3541A00DE249F /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD25B6221B3541A00DE249F /* StationTableViewCell.swift */; };
 		9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */; };
 		9DEB3E7521AA12D200B58A21 /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */; };
 		9DEB3E7721AA68E500B58A21 /* WMATAResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7621AA68E500B58A21 /* WMATAResponse.swift */; };
@@ -26,7 +23,7 @@
 		9DEB3E8321AD29D100B58A21 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E8221AD29D100B58A21 /* MenuViewController.swift */; };
 		9DEB3E8521AD2A9800B58A21 /* LandMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E8421AD2A9800B58A21 /* LandMarkViewController.swift */; };
 		9DEB3E8721AD2B9900B58A21 /* MetroStationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E8621AD2B9900B58A21 /* MetroStationsViewController.swift */; };
-		BE3EBC339004F86D7E055C5D /* Pods_MetroExplorer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBF8ACB1B77CEEE5EC588EA /* Pods_MetroExplorer.framework */; };
+		BE3EBC339004F86D7E055C5D /* Pods_MetroExplorer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBF8ACB1B77CEEE5EC588EA /* Pods_MetroExplorer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,10 +34,7 @@
 		9D11E213219A523A0035D45F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D11E216219A523A0035D45F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D11E218219A523A0035D45F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D8FFD5D219A9E93001CED35 /* NearestStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestStation.swift; sourceTree = "<group>"; };
-		9D8FFD5F219A9EF0001CED35 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		9DC397D421A0F4A7009F959C /* StationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCell.swift; sourceTree = "<group>"; };
-		9DEB3E6C21A6650A00B58A21 /* WMATAAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WMATAAPIManager.swift; sourceTree = "<group>"; };
+		9DD25B6221B3541A00DE249F /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
 		9DEB3E7621AA68E500B58A21 /* WMATAResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMATAResponse.swift; sourceTree = "<group>"; };
@@ -97,9 +91,8 @@
 				9D11E213219A523A0035D45F /* Assets.xcassets */,
 				9D11E215219A523A0035D45F /* LaunchScreen.storyboard */,
 				9D11E218219A523A0035D45F /* Info.plist */,
-				9D8FFD5F219A9EF0001CED35 /* SampleData.swift */,
-				9DC397D421A0F4A7009F959C /* StationCell.swift */,
 				9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */,
+				9DD25B6221B3541A00DE249F /* StationTableViewCell.swift */,
 			);
 			path = MetroExplorer;
 			sourceTree = "<group>";
@@ -107,7 +100,6 @@
 		9DDC8DC521A5138B0003B636 /* manager */ = {
 			isa = PBXGroup;
 			children = (
-				9DEB3E6C21A6650A00B58A21 /* WMATAAPIManager.swift */,
 				9DEB3E7821ACBAD500B58A21 /* LocationDetector.swift */,
 				9DEB3E7A21ACBAFA00B58A21 /* PersistenceManager.swift */,
 				9DEB3E7C21ACBB2F00B58A21 /* FetchMetroStationsManager.swift */,
@@ -131,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				9DEB3E8021ACCA4300B58A21 /* Station.swift */,
-				9D8FFD5D219A9E93001CED35 /* NearestStation.swift */,
 				9DEB3E7621AA68E500B58A21 /* WMATAResponse.swift */,
 			);
 			path = models;
@@ -253,10 +244,7 @@
 			files = (
 				9DEB3E8521AD2A9800B58A21 /* LandMarkViewController.swift in Sources */,
 				9DEB3E7521AA12D200B58A21 /* StationDetailViewController.swift in Sources */,
-				9D8FFD60219A9EF0001CED35 /* SampleData.swift in Sources */,
-				9DC397D521A0F4A7009F959C /* StationCell.swift in Sources */,
-				9DEB3E6D21A6650A00B58A21 /* WMATAAPIManager.swift in Sources */,
-				9D8FFD5E219A9E93001CED35 /* NearestStation.swift in Sources */,
+				9DD25B6321B3541A00DE249F /* StationTableViewCell.swift in Sources */,
 				9DEB3E7B21ACBAFA00B58A21 /* PersistenceManager.swift in Sources */,
 				9DEB3E7921ACBAD500B58A21 /* LocationDetector.swift in Sources */,
 				9D11E20D219A52390035D45F /* AppDelegate.swift in Sources */,
