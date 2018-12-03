@@ -11,6 +11,8 @@
 		9D11E212219A52390035D45F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E210219A52390035D45F /* Main.storyboard */; };
 		9D11E214219A523A0035D45F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E213219A523A0035D45F /* Assets.xcassets */; };
 		9D11E217219A523A0035D45F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D11E215219A523A0035D45F /* LaunchScreen.storyboard */; };
+		9D6198AA21B4A88400E6AF23 /* YelpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6198A921B4A88400E6AF23 /* YelpResponse.swift */; };
+		9D6198AC21B4AC5000E6AF23 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6198AB21B4AC5000E6AF23 /* Landmark.swift */; };
 		9DD25B6321B3541A00DE249F /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD25B6221B3541A00DE249F /* StationTableViewCell.swift */; };
 		9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */; };
 		9DEB3E7521AA12D200B58A21 /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */; };
@@ -34,6 +36,8 @@
 		9D11E213219A523A0035D45F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D11E216219A523A0035D45F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D11E218219A523A0035D45F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D6198A921B4A88400E6AF23 /* YelpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpResponse.swift; sourceTree = "<group>"; };
+		9D6198AB21B4AC5000E6AF23 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		9DD25B6221B3541A00DE249F /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 			children = (
 				9DEB3E8021ACCA4300B58A21 /* Station.swift */,
 				9DEB3E7621AA68E500B58A21 /* WMATAResponse.swift */,
+				9D6198A921B4A88400E6AF23 /* YelpResponse.swift */,
+				9D6198AB21B4AC5000E6AF23 /* Landmark.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 				9DEB3E7521AA12D200B58A21 /* StationDetailViewController.swift in Sources */,
 				9DD25B6321B3541A00DE249F /* StationTableViewCell.swift in Sources */,
 				9DEB3E7B21ACBAFA00B58A21 /* PersistenceManager.swift in Sources */,
+				9D6198AA21B4A88400E6AF23 /* YelpResponse.swift in Sources */,
 				9DEB3E7921ACBAD500B58A21 /* LocationDetector.swift in Sources */,
 				9D11E20D219A52390035D45F /* AppDelegate.swift in Sources */,
 				9DEB3E8121ACCA4300B58A21 /* Station.swift in Sources */,
@@ -255,6 +262,7 @@
 				9DEB3E7721AA68E500B58A21 /* WMATAResponse.swift in Sources */,
 				9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */,
 				9DEB3E8721AD2B9900B58A21 /* MetroStationsViewController.swift in Sources */,
+				9D6198AC21B4AC5000E6AF23 /* Landmark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
