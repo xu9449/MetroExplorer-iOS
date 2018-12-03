@@ -43,12 +43,11 @@ class LandMarkViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         
-            let landmark = self.landmarks[indexPath.row]
-            cell.MyLabel.text = landmark.name
-        
-    
-        
-        
+        let landmark = landmarks[indexPath.row]
+//        let defaulturl = URL(string: "https://s3-media2.fl.yelpcdn.com/bphoto/2EljPz-cdiTQa6wTsIbI7Q/o.jpg")
+//
+        cell.MyLabel.text = landmark.name
+        cell.landmarksImage.load(url: landmark.imageurl )
         
         return cell
     }
@@ -58,6 +57,12 @@ class LandMarkViewController: UICollectionViewController {
         performSegue(withIdentifier: "DetailSague", sender: self)
         
     }
+    
+
+    
+    
+    
+    
 }
 
 extension LandMarkViewController: FetchLandMarksDelegate {
@@ -75,4 +80,6 @@ extension LandMarkViewController: FetchLandMarksDelegate {
       
         
     }
+    
+    
 }

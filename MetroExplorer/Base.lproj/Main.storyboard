@@ -46,7 +46,7 @@
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0Ig-Mn-mCe">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ig-Mn-mCe">
                                             <rect key="frame" x="0.0" y="0.0" width="201" height="132"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -80,6 +80,33 @@
                     <view key="view" contentMode="scaleToFill" id="Kp2-Yr-yg1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="nameLabel" text="nameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ol-Wu-AP7">
+                                <rect key="frame" x="172" y="127" width="222" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="ratingLabel" text="ratingLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fch-PZ-ncc">
+                                <rect key="frame" x="172" y="166" width="222" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="addressLabel" text="addressLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eba-wE-KsT">
+                                <rect key="frame" x="0.0" y="237" width="414" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dp0-Hy-EBe">
+                                <rect key="frame" x="0.0" y="73" width="157" height="142"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Lkz-dv-7AE"/>
                     </view>
@@ -95,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXY-1M-y1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2614" y="-273"/>
+            <point key="canvasLocation" x="2613.04347826087" y="-273.09782608695656"/>
         </scene>
         <!--menu1-->
         <scene sceneID="XJF-NZ-Pgj">
@@ -142,7 +169,7 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="-624.45652173913049"/>
         </scene>
-        <!--Nearest Station-->
+        <!--Select Station-->
         <scene sceneID="oRA-MM-V7s">
             <objects>
                 <tableViewController id="2AG-8k-8Ip" customClass="MetroStationsViewController" customModule="MetroExplorer" sceneMemberID="viewController">
@@ -189,7 +216,7 @@
                             <outlet property="delegate" destination="2AG-8k-8Ip" id="kp6-Fb-0mw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Nearest Station" id="ikE-0j-ggE"/>
+                    <navigationItem key="navigationItem" title="Select Station" id="ikE-0j-ggE"/>
                     <connections>
                         <segue destination="5Fs-V6-3Y2" kind="show" identifier="SelectionSeque2" id="YuQ-M6-YWn"/>
                     </connections>
@@ -284,10 +311,7 @@
             <point key="canvasLocation" x="140.57971014492756" y="157.33695652173915"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="logo" width="16" height="16"/>
-    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CkS-Dc-joD"/>
+        <segue reference="YuQ-M6-YWn"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -96,15 +96,13 @@ class FetchLandmarksManager{
                     print(yelpResponse.businesses)
                     
                     for businesse in yelpResponse.businesses {
-//                        var imageUrl: String? = nil
-//                        imageUrl = try? String(contentsOf: businesse.url)
                         
-                        let landmark = Landmark(name: businesse.name, url: businesse.url)
+                        let landmark = Landmark(name: businesse.name, imageurl: businesse.image_url)
                         
                         landmarks.append(landmark)
                     }
                     
-                    //now what do we do with the gyms????
+                    
                     print(landmarks)
                     
                     self.delegate?.landmarksFound(landmarks)

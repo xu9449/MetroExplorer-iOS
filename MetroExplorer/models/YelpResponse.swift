@@ -19,7 +19,7 @@ struct YelpResponse: Codable {
 struct Businesses: Codable {
    
     let name: String?
-    let url: URL
+    let image_url: URL
  
 
 
