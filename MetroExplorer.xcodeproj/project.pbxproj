@@ -14,6 +14,9 @@
 		9D6198AA21B4A88400E6AF23 /* YelpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6198A921B4A88400E6AF23 /* YelpResponse.swift */; };
 		9D6198AC21B4AC5000E6AF23 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6198AB21B4AC5000E6AF23 /* Landmark.swift */; };
 		9DB267C021B5A7BA00771A11 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB267BF21B5A7BA00771A11 /* Extensions.swift */; };
+		9DB267C421B6E37500771A11 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB267C321B6E37500771A11 /* FavoriteTableViewCell.swift */; };
+		9DB267C621B70CBF00771A11 /* FavLandmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB267C521B70CBF00771A11 /* FavLandmark.swift */; };
+		9DB267CA21B718A400771A11 /* FavLandMarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB267C921B718A400771A11 /* FavLandMarkTableViewController.swift */; };
 		9DD25B6321B3541A00DE249F /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD25B6221B3541A00DE249F /* StationTableViewCell.swift */; };
 		9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */; };
 		9DEB3E7521AA12D200B58A21 /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */; };
@@ -40,6 +43,9 @@
 		9D6198A921B4A88400E6AF23 /* YelpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpResponse.swift; sourceTree = "<group>"; };
 		9D6198AB21B4AC5000E6AF23 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		9DB267BF21B5A7BA00771A11 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9DB267C321B6E37500771A11 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		9DB267C521B70CBF00771A11 /* FavLandmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavLandmark.swift; sourceTree = "<group>"; };
+		9DB267C921B718A400771A11 /* FavLandMarkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavLandMarkTableViewController.swift; sourceTree = "<group>"; };
 		9DD25B6221B3541A00DE249F /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 				9DEB3E7021A7D03700B58A21 /* CollectionViewCell.swift */,
 				9DD25B6221B3541A00DE249F /* StationTableViewCell.swift */,
 				9DB267BF21B5A7BA00771A11 /* Extensions.swift */,
+				9DB267C321B6E37500771A11 /* FavoriteTableViewCell.swift */,
 			);
 			path = MetroExplorer;
 			sourceTree = "<group>";
@@ -122,6 +129,7 @@
 				9DEB3E8221AD29D100B58A21 /* MenuViewController.swift */,
 				9DEB3E8421AD2A9800B58A21 /* LandMarkViewController.swift */,
 				9DEB3E8621AD2B9900B58A21 /* MetroStationsViewController.swift */,
+				9DB267C921B718A400771A11 /* FavLandMarkTableViewController.swift */,
 			);
 			path = "view controllers";
 			sourceTree = "<group>";
@@ -133,6 +141,7 @@
 				9DEB3E7621AA68E500B58A21 /* WMATAResponse.swift */,
 				9D6198A921B4A88400E6AF23 /* YelpResponse.swift */,
 				9D6198AB21B4AC5000E6AF23 /* Landmark.swift */,
+				9DB267C521B70CBF00771A11 /* FavLandmark.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -165,6 +174,7 @@
 				9D11E205219A52390035D45F /* Sources */,
 				9D11E206219A52390035D45F /* Frameworks */,
 				9D11E207219A52390035D45F /* Resources */,
+				51B59771F764B52E442A76CF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -222,6 +232,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		51B59771F764B52E442A76CF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MetroExplorer/Pods-MetroExplorer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MetroExplorer/Pods-MetroExplorer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		84CCCC0F29D6BA3743AF397C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,14 +289,17 @@
 				9DEB3E7B21ACBAFA00B58A21 /* PersistenceManager.swift in Sources */,
 				9D6198AA21B4A88400E6AF23 /* YelpResponse.swift in Sources */,
 				9DEB3E7921ACBAD500B58A21 /* LocationDetector.swift in Sources */,
+				9DB267C421B6E37500771A11 /* FavoriteTableViewCell.swift in Sources */,
 				9D11E20D219A52390035D45F /* AppDelegate.swift in Sources */,
 				9DEB3E8121ACCA4300B58A21 /* Station.swift in Sources */,
 				9DEB3E7F21ACBB4700B58A21 /* FetchLandmarksManager.swift in Sources */,
 				9DEB3E7D21ACBB2F00B58A21 /* FetchMetroStationsManager.swift in Sources */,
+				9DB267CA21B718A400771A11 /* FavLandMarkTableViewController.swift in Sources */,
 				9DEB3E8321AD29D100B58A21 /* MenuViewController.swift in Sources */,
 				9DB267C021B5A7BA00771A11 /* Extensions.swift in Sources */,
 				9DEB3E7721AA68E500B58A21 /* WMATAResponse.swift in Sources */,
 				9DEB3E7121A7D03700B58A21 /* CollectionViewCell.swift in Sources */,
+				9DB267C621B70CBF00771A11 /* FavLandmark.swift in Sources */,
 				9DEB3E8721AD2B9900B58A21 /* MetroStationsViewController.swift in Sources */,
 				9D6198AC21B4AC5000E6AF23 /* Landmark.swift in Sources */,
 			);

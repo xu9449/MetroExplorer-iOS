@@ -10,17 +10,25 @@ import Foundation
 
 protocol FetchStationDelegate {
     func stationFound(_ stations: [StationModel])
-    func stationsNotFound()
+    func stationsNotFound(reason: FetchMetroStationsManager.FailureReason)
 }
 
 class FetchMetroStationsManager {
+    
+    enum FailureReason: String {
+        case noResponse = "No response received" //allow the user to try again
+        case non200Response = "Bad response" //give up
+        case noData = "No data recieved" //give up
+        case badData = "Bad data" //give up
+    }
+
     // delegate is like interface
     var delegate: FetchStationDelegate?
     
     func fetchStations() {
         
         let urlString = "https://api.wmata.com/Rail.svc/json/jStations"
-        let parameters = ["LineCode":"GR"]
+        //let parameters = ["LineCode":"GR"]
         let headers = ["api_key":"1a0a683e85d84207babfbae2647236ba"]
         
         var urlComponents = URLComponents(string:urlString)
@@ -29,9 +37,9 @@ class FetchMetroStationsManager {
         
         
         
-        for (key, value) in parameters {
-            queryItems.append(URLQueryItem(name: key, value: value))
-        }
+//        for (key, value) in parameters {
+//            queryItems.append(URLQueryItem(name: key, value: value))
+//        }
         
        urlComponents?.queryItems = queryItems
         
@@ -47,10 +55,15 @@ class FetchMetroStationsManager {
             print("request complete")
             
       
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print("response is nil or 200")
+            guard let response = response as? HTTPURLResponse else {
                 
-                self.delegate?.stationsNotFound()
+                self.delegate?.stationsNotFound(reason: .noResponse)
+                
+                return
+            }
+            
+            guard response.statusCode == 200 else {
+                self.delegate?.stationsNotFound(reason: .non200Response)
                 
                 return
             }
@@ -58,9 +71,7 @@ class FetchMetroStationsManager {
             //HERE - response is NOT nil and IS 200
             
             guard let data = data else {
-                print("data is nil")
-                
-                self.delegate?.stationsNotFound()
+                self.delegate?.stationsNotFound(reason: .noData)
                 
                 return
             }
@@ -94,7 +105,7 @@ class FetchMetroStationsManager {
                 print("codable failed - bad data format")
                 print(error.localizedDescription)
                 
-                self.delegate?.stationsNotFound()
+                self.delegate?.stationsNotFound(reason: .badData)
             }
         }
         

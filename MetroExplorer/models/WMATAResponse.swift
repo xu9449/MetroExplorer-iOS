@@ -18,6 +18,8 @@ struct Stations: Codable {
     
     let Address: Address
     let Name: String
+    let Lat: Double
+    let Lon: Double
 
     
 }

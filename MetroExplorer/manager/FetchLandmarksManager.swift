@@ -10,21 +10,28 @@ import Foundation
 
 protocol FetchLandMarksDelegate {
     func landmarksFound(_ landmarks: [Landmark])
-    func landmarksNotFound()
+    func landmarksNotFound(reason: FetchLandmarksManager.FailureReason)
 }
 
 class FetchLandmarksManager{
     
+    enum FailureReason: String {
+        case noResponse = "No response received" //allow the user to try again
+        case non200Response = "Bad response" //give up
+        case noData = "No data recieved" //give up
+        case badData = "Bad data" //give up
+    }
+    
     var delegate: FetchLandMarksDelegate?
 
-    func fetchLandmarks() {
+    func fetchLandmarks(latitude: Double, longitude: Double) {
         
         var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
         
         urlComponents.queryItems = [
             URLQueryItem(name: "term", value: "landmark"),
-            URLQueryItem(name: "latitude", value: "38.900140"),
-            URLQueryItem(name: "longitude", value: "-77.049447")
+            URLQueryItem(name: "latitude", value: String(latitude)),
+            URLQueryItem(name: "longitude", value: String(longitude))
         ]
         
 //            let urlString = "https://api.yelp.com/v3/businesses/search"
@@ -42,20 +49,7 @@ class FetchLandmarksManager{
             request.setValue(value, forHTTPHeaderField: key)
         }
         
-//            var urlComponents = URLComponents(string:urlString)
-//            
-//            var queryItems = [URLQueryItem]()
-            
-            
-            
-//            for (key, value) in parameters {
-//                queryItems.append(URLQueryItem(name: key, value: value))
-//            }
-        
-//            urlComponents?.queryItems = queryItems
-//
-//            var request = URLRequest(url: (urlComponents?.url)!)
-//            request.httpMethod = "GET"
+
         
         
             
@@ -64,20 +58,26 @@ class FetchLandmarksManager{
                 print("request complete")
                 
                 
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("response is nil or 200")
+                guard let response = response as? HTTPURLResponse else {
                     
-                    self.delegate?.landmarksNotFound()
+                    
+                    self.delegate?.landmarksNotFound(reason: .noResponse)
+                    
                     
                     return
                 }
                 
+                guard response.statusCode == 200 else {
+                    self.delegate?.landmarksNotFound(reason: .non200Response)
+                    
+                    return
+                }
                 //HERE - response is NOT nil and IS 200
                 
                 guard let data = data else {
-                    print("data is nil")
+                   
                     
-                    self.delegate?.landmarksNotFound()
+                    self.delegate?.landmarksNotFound(reason: .noData)
                     
                     return
                 }
@@ -93,13 +93,20 @@ class FetchLandmarksManager{
                     
                     var landmarks = [Landmark]()
                     
+                    
                     print(yelpResponse.businesses)
                     
                     for businesse in yelpResponse.businesses {
                         
-                        let landmark = Landmark(name: businesse.name, imageurl: businesse.image_url)
+                        let address = businesse.location.display_address?.joined(separator: " ")
+                      
+                        let landmark = Landmark(name: businesse.name!, imageurl: businesse.image_url!, rating: businesse.rating!, location: address!)
                         
+                        
+                   
+
                         landmarks.append(landmark)
+                        
                     }
                     
                     
@@ -113,7 +120,7 @@ class FetchLandmarksManager{
                     print("codable failed - bad data format")
                     print(error.localizedDescription)
                     
-                    self.delegate?.landmarksNotFound()
+                    self.delegate?.landmarksNotFound(reason: .badData)
                 }
             }
             

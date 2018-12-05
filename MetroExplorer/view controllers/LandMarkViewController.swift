@@ -7,12 +7,14 @@
 //
 
 import UIKit
-
+import MBProgressHUD
 
 
 private let reuseIdentifier = "Cell"
 
-class LandMarkViewController: UICollectionViewController {
+class LandMarkViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    let locationDetector = LocationDetector()
+    let fetchLandmarksManager = FetchLandmarksManager()
     
     var landmarks = [Landmark](){
         didSet{
@@ -20,13 +22,23 @@ class LandMarkViewController: UICollectionViewController {
         }
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let fetchLandmarksManager = FetchLandmarksManager()
+        locationDetector.delegate = self
         fetchLandmarksManager.delegate = self
         
-        fetchLandmarksManager.fetchLandmarks()
+        fetchLandmarks()
+    }
+    
+    private func fetchLandmarks(){
+//
+        let loadingNotification = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.indeterminate
+        loadingNotification.label.text = "Loading"
+        locationDetector.findLocation()
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -44,18 +56,36 @@ class LandMarkViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         
         let landmark = landmarks[indexPath.row]
-//        let defaulturl = URL(string: "https://s3-media2.fl.yelpcdn.com/bphoto/2EljPz-cdiTQa6wTsIbI7Q/o.jpg")
-//
+
+        
+
         cell.MyLabel.text = landmark.name
-        cell.landmarksImage.load(url: landmark.imageurl )
+        cell.landmarksImage.load(url: landmark.imageurl  )
+        
+
+        
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.item)
-        performSegue(withIdentifier: "DetailSague", sender: self)
+        let vc = storyboard?.instantiateViewController(withIdentifier:"StationDetailViewController")as?StationDetailViewController
+            let landmark = landmarks[indexPath.row]
+        let a = "Rating: "
         
+        vc?.name = landmark.name
+        vc?.address = landmark.location
+        vc?.rating =  a + String(landmark.rating)
+        vc?.imageurl = landmark.imageurl
+        self.navigationController?.pushViewController(vc!, animated: true)
+
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
     }
     
 
@@ -66,20 +96,62 @@ class LandMarkViewController: UICollectionViewController {
 }
 
 extension LandMarkViewController: FetchLandMarksDelegate {
+    
+    
     func landmarksFound(_ landmarks: [Landmark]) {
         print("landmarks found - here they are in the controller!")
        
         DispatchQueue.main.async {
             self.landmarks = landmarks
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
     
-    func landmarksNotFound() {
-        print("no landmarks found")
+    func landmarksNotFound(reason: FetchLandmarksManager.FailureReason) {
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+            let alertController = UIAlertController(title: "Problem fetching landmarks", message: reason.rawValue, preferredStyle: .alert)
+            
+            switch(reason) {
+            case .noResponse:
+                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: { (action) in
+                    self.fetchLandmarks()
+                })
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler:nil)
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(retryAction)
+                
+            case .non200Response, .noData, .badData:
+                let okayAction = UIAlertAction(title: "Okay", style: .default, handler:nil)
+                
+                alertController.addAction(okayAction)
+            }
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
         
       
         
     }
     
     
+}
+
+extension LandMarkViewController: LocationDetectorDelegate {
+    func locationDetected(latitude: Double, longitude: Double) {
+        fetchLandmarksManager.fetchLandmarks(latitude: latitude, longitude: longitude)
+    }
+    
+    func locationNotDetected() {
+        print("no location found :(")
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+            //TODO: Show a AlertController with error
+        }
+    }
 }

@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class MetroStationsViewController: UITableViewController {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBOutlet var tblView: UITableView!
     
     var stations = [StationModel]() {
         didSet{
@@ -16,12 +21,17 @@ class MetroStationsViewController: UITableViewController {
         }
     }
 
+//    var searchStation = [StationModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let fetchMetroStationManager = FetchMetroStationsManager()
         fetchMetroStationManager.delegate = self 
+        
+        let loadingNotification = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loadingNotification.mode = MBProgressHUDMode.indeterminate
+        loadingNotification.label.text = "Loading"
         
         fetchMetroStationManager.fetchStations()
     }
@@ -56,16 +66,54 @@ class MetroStationsViewController: UITableViewController {
 
 
 extension MetroStationsViewController: FetchStationDelegate {
+    
+    
+    
+    
     func stationFound(_ stations: [StationModel]) {
         print("stations found - here they are in the controller!")
         print(stations.count)
         DispatchQueue.main.async {
             self.stations = stations
             
+            MBProgressHUD.hide(for: self.view, animated: true)
             
-        }    }
+        }
+        
+    }
     
-    func stationsNotFound() {
-        print("no stations found")
+    func stationsNotFound(reason: FetchMetroStationsManager.FailureReason) {
+        let fetchMetroStationManager = FetchMetroStationsManager()
+        
+        DispatchQueue.main.async {
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+            let alertController = UIAlertController(title: "Problem fetching location", message: reason.rawValue, preferredStyle: .alert)
+            
+            switch(reason) {
+            case .noResponse:
+                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: { (action) in
+                    fetchMetroStationManager.fetchStations()
+                })
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler:nil)
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(retryAction)
+                
+            case .non200Response, .noData, .badData:
+                let okayAction = UIAlertAction(title: "Okay", style: .default, handler:nil)
+                
+                alertController.addAction(okayAction)
+            }
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }
+
+//extension MetroStationsViewController: UISearchBarDelegate {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+//        searchStation = stations.filter($0.prefix(searchText.count)})
+//    }
+//}
