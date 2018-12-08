@@ -89,7 +89,7 @@ class FetchMetroStationsManager {
                 
                 for station in wmataResponse.Stations {
                     
-                   let station = StationModel(name: station.Name, address: station.Address.Street)
+                    let station = StationModel(name: station.Name, address: station.Address.Street, lat: station.Lat, lon: station.Lon)
                     
                     stations.append(station)
                 }

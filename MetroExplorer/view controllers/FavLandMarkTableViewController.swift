@@ -10,20 +10,22 @@ import UIKit
 
 class FavLandMarkTableViewController: UITableViewController {
     
-    var favLandmarks = [FavLandmark](){
-        didSet{
-            tableView.reloadData()
-        }
-    }
+//    var favLandmarks = [FavLandmark](){
+//        didSet{
+//            tableView.reloadData()
+//        }
+//    }
+    
 
+    
     
     let favlandmarks = PersistenceManager.sharedInstance.fetchFavLandmarks()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 600
-    }
+        tableView.estimatedRowHeight = 300
+           }
 
 
 
@@ -40,12 +42,7 @@ class FavLandMarkTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavoriteTableViewCell
         let favlandmark = favlandmarks[indexPath.row]
-        
-        
 
-        
-        
-        
         cell.AddressLabel.text = favlandmark.location
         cell.DateLabel.text = String(favlandmark.date!)
         cell.LandmarkImage.load(url: favlandmark.imageurl!)

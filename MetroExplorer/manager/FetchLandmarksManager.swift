@@ -34,10 +34,6 @@ class FetchLandmarksManager{
             URLQueryItem(name: "longitude", value: String(longitude))
         ]
         
-//            let urlString = "https://api.yelp.com/v3/businesses/search"
-//            let parameters = ["term":"landmarks%26Historical Buildings",
-//                              "latitude":"38.900140",
-//                              "longitude":"-77.049447"]
             let headers = ["Authorization":"Bearer zjH3xIw86DTgjpgtPB7tnE4Bt1Fyw-5tMV6REva6qBxtt8x7s5wlaARRoQYN8hZjs6hrS2mWAq9hQrvch__9oY6Pa61MjN5YPtYuSycOkerOf7Uvl8SgpbH6k0EEXHYx"]
         let url = urlComponents.url!
         
@@ -100,7 +96,7 @@ class FetchLandmarksManager{
                         
                         let address = businesse.location.display_address?.joined(separator: " ")
                       
-                        let landmark = Landmark(name: businesse.name!, imageurl: businesse.image_url!, rating: businesse.rating!, location: address!)
+                        let landmark = Landmark(name: businesse.name, imageurl: businesse.image_url, rating: businesse.rating ?? 2.0, location: address)
                         
                         
                    
@@ -127,4 +123,7 @@ class FetchLandmarksManager{
             print("execute request")
             task.resume()
         }
-}
+    
+    
+    }
+

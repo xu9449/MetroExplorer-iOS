@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Land Mark View Controller-->
+        <!--Title-->
         <scene sceneID="IZR-wJ-8kU">
             <objects>
-                <collectionViewController id="5Fs-V6-3Y2" customClass="LandMarkViewController" customModule="MetroExplorer" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="LandMarkViewController" id="5Fs-V6-3Y2" customClass="LandMarkViewController" customModule="MetroExplorer" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9xx-aN-Dvy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,6 +75,7 @@
                             <outlet property="delegate" destination="5Fs-V6-3Y2" id="ebD-xN-V9z"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Title" id="lFb-w8-Jql"/>
                     <connections>
                         <outlet property="collectionView" destination="9xx-aN-Dvy" id="UhK-Gh-0Kb"/>
                         <segue destination="bn2-cf-Jz3" kind="show" identifier="DetailSague" id="Gmp-HO-bgx"/>
@@ -237,7 +238,7 @@
         <!--Select Station-->
         <scene sceneID="oRA-MM-V7s">
             <objects>
-                <tableViewController id="2AG-8k-8Ip" customClass="MetroStationsViewController" customModule="MetroExplorer" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MetroStationsViewController" id="2AG-8k-8Ip" customClass="MetroStationsViewController" customModule="MetroExplorer" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aEt-7a-Kbo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -304,7 +305,7 @@
         <!--Navigator-->
         <scene sceneID="2gs-2A-r9Y">
             <objects>
-                <tabBarController title="Navigator" id="gie-IX-tyb" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" title="Navigator" id="gie-IX-tyb" customClass="MainTabBarController" customModule="MetroExplorer" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MfV-mf-0Sb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -319,11 +320,11 @@
             </objects>
             <point key="canvasLocation" x="-791" y="-291"/>
         </scene>
-        <!--menu-->
+        <!--Navigation Controller-->
         <scene sceneID="CMj-iD-Mfq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uuB-I4-zbo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="menu" id="Gwq-b5-cd8"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="search" id="Gwq-b5-cd8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2uR-69-JLd">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -414,11 +415,11 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="157.33695652173915"/>
         </scene>
-        <!--Favorite-->
+        <!--Navigation Controller-->
         <scene sceneID="pFi-gQ-Nq7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BJQ-Br-mkz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorite" id="kiq-Al-9Mu"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="kiq-Al-9Mu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yh6-hi-xov">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -435,6 +436,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YuQ-M6-YWn"/>
+        <segue reference="CkS-Dc-joD"/>
     </inferredMetricsTieBreakers>
 </document>

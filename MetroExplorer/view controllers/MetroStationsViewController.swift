@@ -10,6 +10,10 @@ import UIKit
 import MBProgressHUD
 
 class MetroStationsViewController: UITableViewController {
+    var fromSelectedStation = true
+    var stationlat = 0.0
+    var stationlon = 0.0
+    var stationname = " "
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -58,7 +62,14 @@ class MetroStationsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "SelectionSeque2", sender: self)
+        let station = stations[indexPath.row]
+        let vc2 = storyboard?.instantiateViewController(withIdentifier:"LandMarkViewController")as?LandMarkViewController
+        vc2?.stationlat = station.lat
+        vc2?.stationlon = station.lon
+        vc2?.fromSelectedStation = true
+        vc2?.stationname = station.name
+        self.navigationController?.pushViewController(vc2!, animated: true)
+
     }
     
 }

@@ -11,7 +11,7 @@ import UIKit
 class StationDetailViewController: UIViewController {
     var name = ""
     var address = " "
-    var rating = " "
+    var rating = Double?(0.0)
     var imageurl = URL(string: "https://s3-media3.fl.yelpcdn.com/bphoto/oAqE0UE3Gah-pWgroY2V3g/o.jpg")
     @IBOutlet weak var findDirectionButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
@@ -42,7 +42,7 @@ class StationDetailViewController: UIViewController {
     @IBAction func ShareButtonPressed(_ sender: Any) {
         
         
-        let shareText = "check out my pushup record"
+        let shareText = "check out my favorite landmark."
         
         let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
         
@@ -56,7 +56,12 @@ class StationDetailViewController: UIViewController {
         print (name)
         self.DetailAddressLabel.text = address
         self.DetailNameLabel.text = name
-        self.DetailRatingLabel.text = String(rating)
+        if let myNumber = rating {
+            self.DetailRatingLabel.text = "Rating: \(myNumber)"
+            
+        }else {
+            self.DetailRatingLabel.text = "N/A"
+        }
         self.DetailImage.load(url: imageurl!)
         
         
