@@ -20,6 +20,7 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
     var stationlat = 0.0
     var stationlon = 0.0
     var stationname = " "
+    var gameTimer: Timer!
     
     var landmarks = [Landmark](){
         didSet{
@@ -27,11 +28,11 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
-    var nearestStation = [NearestStation](){
-        didSet{
-            collectionView.reloadData()
-        }
-    }
+//    var nearestStation = [NearestStation](){
+//        didSet{
+//            collectionView.reloadData()
+//        }
+//    }
     
     
     override func viewDidLoad() {
@@ -42,16 +43,18 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
 //        fetchNearestStationManager.delegate = self
         
         fetchLandmarks()
-        fetchneareststation()
+//        fetchneareststation()
         
             }
     
-    private func fetchneareststation(){
-         
-    }
+//    private func fetchneareststation(){
+//
+//    }
     
     private func fetchLandmarks(){
 //
+        gameTimer = Timer.scheduledTimer(timeInterval: 10,target: self, selector: #selector(runTimeCode), userInfo: nil, repeats: true)
+        
         
         let loadingNotification = MBProgressHUD.showAdded(to: self.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.indeterminate
@@ -69,8 +72,19 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
         }else{
         locationDetector.findLocation()
         }
-        print(nearestStation)
+//        print(nearestStation)
        
+        
+    }
+    
+    @objc private func runTimeCode(){
+        let alertController = UIAlertController(title: "Problem fetching landmarks", message: " ", preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .default, handler:nil)
+        
+        alertController.addAction(okayAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
         
     }
     
@@ -195,47 +209,45 @@ extension LandMarkViewController: LocationDetectorDelegate {
 
 
 
-extension LandMarkViewController: FetchNearestStationDelegate {
-    
-    func neareststationFound(_ neareststations: [NearestStation]) {
-        print("landmarks found - here they are in the controller!")
-        
-        DispatchQueue.main.async {
-            self.nearestStation = neareststations
-            
-            MBProgressHUD.hide(for: self.view, animated: true)
-        }
-    }
-    
-    func neareststationNotFound(reason: FetchNearestStationManager.FailureReason) {
-        DispatchQueue.main.async {
-            MBProgressHUD.hide(for: self.view, animated: true)
-            
-            let alertController = UIAlertController(title: "Problem fetching nearest station", message: reason.rawValue, preferredStyle: .alert)
-            
-            switch(reason) {
-            case .noResponse:
-                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: { (action) in
-                    self.fetchLandmarks()
-                })
-                
-                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler:nil)
-                
-                alertController.addAction(cancelAction)
-                alertController.addAction(retryAction)
-                
-            case .non200Response, .noData, .badData:
-                let okayAction = UIAlertAction(title: "Okay", style: .default, handler:nil)
-                
-                alertController.addAction(okayAction)
-            }
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
-        
-        
-        
-    }
-    
-    
-}
+//extension LandMarkViewController: FetchNearestStationDelegate {
+//
+//    func neareststationFound(_ neareststations: [NearestStation]) {
+//        print("landmarks found - here they are in the controller!")
+//
+//        DispatchQueue.main.async {
+//            self.nearestStation = neareststations
+//
+//            MBProgressHUD.hide(for: self.view, animated: true)
+//        }
+//    }
+//
+//    func neareststationNotFound(reason: FetchNearestStationManager.FailureReason) {
+//        DispatchQueue.main.async {
+//            MBProgressHUD.hide(for: self.view, animated: true)
+//
+//            let alertController = UIAlertController(title: "Problem fetching nearest station", message: reason.rawValue, preferredStyle: .alert)
+//
+//            switch(reason) {
+//            case .noResponse:
+//                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: { (action) in
+//                    self.fetchLandmarks()
+//                })
+//
+//                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler:nil)
+//
+//                alertController.addAction(cancelAction)
+//                alertController.addAction(retryAction)
+//
+//            case .non200Response, .noData, .badData:
+//                let okayAction = UIAlertAction(title: "Okay", style: .default, handler:nil)
+//
+//                alertController.addAction(okayAction)
+//            }
+//
+//            self.present(alertController, animated: true, completion: nil)
+//        }
+//
+//
+//
+//    }
+
