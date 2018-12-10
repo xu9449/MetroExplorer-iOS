@@ -20,6 +20,7 @@ class MenuViewController: UIViewController {
         
     }
     
+    
     @IBAction func NearestButtonPressed(_ sender: Any) {
         print("Select station")
         performSegue(withIdentifier: "NearestSegue", sender: self)    }

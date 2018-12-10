@@ -9,12 +9,19 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
+    var MyFavLandMarks = [FavLandmark]()
+    @IBOutlet weak var TabBar: UITabBar!
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        print("ddd")
 
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.barTintColor = UIColor(red: 38/255, green: 196/255, blue: 133/255, alpha: 1)
 
         // Do any additional setup after loading the view.
     }
+    
     
 
     /*

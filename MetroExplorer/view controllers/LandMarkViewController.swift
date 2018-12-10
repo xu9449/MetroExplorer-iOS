@@ -42,8 +42,13 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
 //        fetchNearestStationManager.delegate = self
         
         fetchLandmarks()
+        fetchneareststation()
         
             }
+    
+    private func fetchneareststation(){
+         
+    }
     
     private func fetchLandmarks(){
 //
