@@ -10,6 +10,7 @@ import UIKit
 
 class FavLandMarkTableViewController: UITableViewController {
     
+    let favlandmarksKey = "favlandmarks"
     
     var favLandmarks = [FavLandmark](){
         didSet{
@@ -26,12 +27,10 @@ class FavLandMarkTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         
-        
-        
         super.viewDidLoad()
         
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 300
+       // tableView.rowHeight = UITableView.automaticDimension
+       // tableView.estimatedRowHeight = 150
         favLandmarks = PersistenceManager.sharedInstance.fetchFavLandmarks()           }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,8 +41,8 @@ class FavLandMarkTableViewController: UITableViewController {
     
     
     func viewLoadSetup(){
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 300
+       // tableView.rowHeight = UITableView.automaticDimension
+      //  tableView.estimatedRowHeight = 150
         favLandmarks = PersistenceManager.sharedInstance.fetchFavLandmarks()    
     }
 
@@ -70,5 +69,19 @@ class FavLandMarkTableViewController: UITableViewController {
         
         
         return cell
+    }
+    
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let userDefaults = UserDefaults.standard
+        if (editingStyle == .delete) {
+            favLandmarks.remove(at: indexPath.item)
+            //tableView.deleteRows(at:[indexPath], with: .bottom)
+            let encoder = JSONEncoder()
+            let encodedLandmarks = try? encoder.encode(favLandmarks)
+            userDefaults.set(encodedLandmarks, forKey: favlandmarksKey)        }
     }
 }

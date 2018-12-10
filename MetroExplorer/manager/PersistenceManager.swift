@@ -40,6 +40,20 @@ class PersistenceManager {
     func fetchLandmarksRecord() -> [FavLandmark] {
         let favlandmarks = fetchFavLandmarks()
         return favlandmarks
-//        return workouts.sorted(by: {$0.pushupsCompleted > $1.pushupsCompleted}).first?.pushupsCompleted ?? 0
     }
+    
+//    func updateFavLandmarks(FavLandmarks: [FavLandmark]) -> [FavLandmark]{
+//
+//    }
+    
+//    func deleteFavLandmarks(favlandmark: FavLandmark) {
+//        let userDefaults = UserDefaults.standard
+//
+//        var favlandmarks = fetchFavLandmarks()
+//        favlandmarks.remove(at: IndexPath.item)
+//
+//        let encoder = JSONEncoder()
+//        let encodedLandmarks = try? encoder.encode(favlandmarks)
+//
+//        userDefaults.set(encodedLandmarks, forKey: favlandmarksKey)    }
 }
