@@ -11,7 +11,7 @@ import CoreLocation
 
 protocol LocationDetectorDelegate {
     func locationDetected(latitude: Double, longitude: Double)
-    func locationNotDetected() //no GPS/network signal for 5 seconds (timeout) OR no permission (TODO: implement timeout)
+    func locationNotDetected() 
 }
 
 class LocationDetector: NSObject {

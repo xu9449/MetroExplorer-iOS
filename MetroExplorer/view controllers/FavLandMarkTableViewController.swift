@@ -82,6 +82,9 @@ class FavLandMarkTableViewController: UITableViewController {
             //tableView.deleteRows(at:[indexPath], with: .bottom)
             let encoder = JSONEncoder()
             let encodedLandmarks = try? encoder.encode(favLandmarks)
-            userDefaults.set(encodedLandmarks, forKey: favlandmarksKey)        }
+            userDefaults.set(encodedLandmarks, forKey: favlandmarksKey)
+            
+        }
+        MainTabBarController().showbadgeValue()
     }
 }

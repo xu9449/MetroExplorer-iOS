@@ -12,7 +12,7 @@ class StationDetailViewController: UIViewController {
     var name = ""
     var address = " "
     var rating = Double?(0.0)
-    var imageurl = URL(string: "https://s3-media3.fl.yelpcdn.com/bphoto/oAqE0UE3Gah-pWgroY2V3g/o.jpg")
+    var imageurl = URL(string: "https://i.pinimg.com/236x/d6/45/5e/d6455ee8a3b0cb4495f141d3076db3d7--psy-kawaii.jpg")
     var lat = Double?(0)
     var lon = Double?(0)
     @IBOutlet weak var findDirectionButton: UIButton!
@@ -52,6 +52,9 @@ class StationDetailViewController: UIViewController {
         
         let favLandmark = FavLandmark(name: favname!, imageurl: favimageUrl!, location: favaddress! ,date: favdate)
         PersistenceManager.sharedInstance.saveLandmark(favlandmark: favLandmark)
+        MainTabBarController().viewDidLoad()
+       
+        
     }
     
     @IBAction func ShareButtonPressed(_ sender: Any) {

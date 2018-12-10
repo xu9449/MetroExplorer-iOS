@@ -128,7 +128,6 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="Dp0-Hy-EBe" secondAttribute="bottom" id="4M2-Kc-SQT"/>
-                                            <constraint firstItem="fYf-3g-k4l" firstAttribute="leading" secondItem="Dp0-Hy-EBe" secondAttribute="trailing" constant="30" id="beo-hY-YMJ"/>
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="addressLabel" text="addressLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eba-wE-KsT">
@@ -202,24 +201,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="27" translatesAutoresizingMaskIntoConstraints="NO" id="uj2-72-j0c">
-                                <rect key="frame" x="106" y="113" width="203" height="153"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="uj2-72-j0c">
+                                <rect key="frame" x="106" y="113" width="203" height="227"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Metro Explorer" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="boC-AC-boy">
                                         <rect key="frame" x="0.0" y="0.0" width="203" height="39"/>
+                                        <color key="backgroundColor" red="0.94253149756419374" green="0.74704876146689214" blue="0.96620899438858032" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReM-W0-hV5">
-                                        <rect key="frame" x="53.666666666666657" y="66" width="96" height="30"/>
-                                        <state key="normal" title="Select Station"/>
+                                        <rect key="frame" x="53.666666666666657" y="103" width="96" height="30"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" title="Select Station">
+                                            <color key="titleColor" red="1" green="0.33940663146680894" blue="0.50022199388996058" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
                                         <connections>
                                             <action selector="NearestButtonPressed:" destination="n2N-BC-pqI" eventType="touchUpInside" id="jko-We-6s6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOb-5X-GX7">
-                                        <rect key="frame" x="48" y="123" width="107" height="30"/>
+                                        <rect key="frame" x="48" y="197" width="107" height="30"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="rOb-5X-GX7" secondAttribute="height" multiplier="107:30" id="tEw-yT-hFe"/>
                                         </constraints>
@@ -231,7 +235,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.93941490953479556" green="1" blue="0.49399108048770835" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="uj2-72-j0c" firstAttribute="top" secondItem="KDB-Zv-1V7" secondAttribute="top" constant="49" id="Fwb-uf-Fzg"/>
                             <constraint firstItem="uj2-72-j0c" firstAttribute="leading" secondItem="KDB-Zv-1V7" secondAttribute="leading" constant="106" id="LQe-li-kdz"/>
@@ -376,7 +380,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="AddressLabel" text="AddressLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ze-cm-NM6">
-                                            <rect key="frame" x="19.999999999999993" y="50.333333333333336" width="104.33333333333331" height="20.333333333333336"/>
+                                            <rect key="frame" x="20.000000000000007" y="50.333333333333336" width="104.66666666666669" height="20.333333333333336"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -402,7 +406,6 @@
                                         <constraint firstItem="Ii7-cE-xaQ" firstAttribute="leading" secondItem="rxq-L6-UBr" secondAttribute="trailing" constant="132" id="HAI-pi-MjV"/>
                                         <constraint firstItem="5ze-cm-NM6" firstAttribute="top" secondItem="zlX-mM-Lgl" secondAttribute="bottom" constant="18.329999999999998" id="IRP-Ww-yEg"/>
                                         <constraint firstItem="rxq-L6-UBr" firstAttribute="top" secondItem="5ze-cm-NM6" secondAttribute="bottom" constant="21" id="cn3-EW-aDC"/>
-                                        <constraint firstItem="Ii7-cE-xaQ" firstAttribute="leading" secondItem="5ze-cm-NM6" secondAttribute="trailing" constant="105.33" id="eLd-A6-8Qt"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Ii7-cE-xaQ" secondAttribute="bottom" constant="12" id="hzI-tJ-E3z"/>
                                         <constraint firstItem="rxq-L6-UBr" firstAttribute="top" secondItem="5ze-cm-NM6" secondAttribute="bottom" constant="21" id="ioh-HL-I66"/>
                                         <constraint firstItem="rxq-L6-UBr" firstAttribute="leading" secondItem="Nac-Ct-tdZ" secondAttribute="leadingMargin" id="ll6-b4-0f0"/>

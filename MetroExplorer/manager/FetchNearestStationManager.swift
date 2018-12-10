@@ -9,7 +9,7 @@
 import Foundation
 
 protocol FetchNearestStationDelegate {
-    func neareststationFound(_ landmarks: [NearestStation])
+    func neareststationFound(_ nearestStation: [NearestStation])
     func neareststationNotFound(reason: FetchNearestStationManager.FailureReason)
 }
 
@@ -24,95 +24,95 @@ class FetchNearestStationManager{
     
     var delegate: FetchNearestStationDelegate?
     
-func fetchNearestStation(latitude: Double, longitude: Double) {
-    
-    var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
-    
-    urlComponents.queryItems = [
-        URLQueryItem(name: "term", value: "Metro"),
-        URLQueryItem(name: "latitude", value: String(latitude)),
-        URLQueryItem(name: "longitude", value: String(longitude))
-    ]
-    
-    let headers = ["Authorization":"Bearer zjH3xIw86DTgjpgtPB7tnE4Bt1Fyw-5tMV6REva6qBxtt8x7s5wlaARRoQYN8hZjs6hrS2mWAq9hQrvch__9oY6Pa61MjN5YPtYuSycOkerOf7Uvl8SgpbH6k0EEXHYx"]
-    let url = urlComponents.url!
-    
-    
-    
-    var request = URLRequest(url:url)
-    request.httpMethod = "GET"
-    for (key, value) in headers {
-        request.setValue(value, forHTTPHeaderField: key)
-    }
-    
-    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        //PUT CODE HERE TO RUN UPON COMPLETION
-        print("request complete")
+    func fetchNearestStation(latitude: Double, longitude: Double) {
+        
+        var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
+        
+        urlComponents.queryItems = [
+            URLQueryItem(name: "term", value: "Metro"),
+            URLQueryItem(name: "latitude", value: String(latitude)),
+            URLQueryItem(name: "longitude", value: String(longitude))
+        ]
+        
+        let headers = ["Authorization":"Bearer zjH3xIw86DTgjpgtPB7tnE4Bt1Fyw-5tMV6REva6qBxtt8x7s5wlaARRoQYN8hZjs6hrS2mWAq9hQrvch__9oY6Pa61MjN5YPtYuSycOkerOf7Uvl8SgpbH6k0EEXHYx"]
+        let url = urlComponents.url!
         
         
-        guard let response = response as? HTTPURLResponse else {
-            
-            
-            self.delegate?.neareststationNotFound(reason: .noResponse)
-            
-            
-            return
+        
+        var request = URLRequest(url:url)
+        request.httpMethod = "GET"
+        for (key, value) in headers {
+            request.setValue(value, forHTTPHeaderField: key)
         }
         
-        guard response.statusCode == 200 else {
-            self.delegate?.neareststationNotFound(reason: .non200Response)
-            
-            return
-        }
-        //HERE - response is NOT nil and IS 200
-        
-        guard let data = data else {
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            //PUT CODE HERE TO RUN UPON COMPLETION
+            print("request complete")
             
             
-            self.delegate?.neareststationNotFound(reason: .noData)
-            
-            return
-        }
-        
-        let decoder = JSONDecoder()
-        
-        do {
-            let yelpResponse = try decoder.decode(YelpResponse.self, from: data)
-            
-            //HERE - decoding was successful
-            
-            var neareststations = [NearestStation]()
-            
-            
-            print(yelpResponse.businesses)
-            
-            for businesse in yelpResponse.businesses {
+            guard let response = response as? HTTPURLResponse else {
                 
                 
-                
-                let neareststation = NearestStation(name: businesse.name!)
-                
+                self.delegate?.neareststationNotFound(reason: .noResponse)
                 
                 
-                
-                neareststations.append(neareststation)
-                
+                return
             }
-            print(neareststations)
             
-            self.delegate?.neareststationFound(neareststations)
+            guard response.statusCode == 200 else {
+                self.delegate?.neareststationNotFound(reason: .non200Response)
+                
+                return
+            }
+            //HERE - response is NOT nil and IS 200
             
+            guard let data = data else {
+                
+                
+                self.delegate?.neareststationNotFound(reason: .noData)
+                
+                return
+            }
             
-        } catch let error {
-            //if we get here, need to set a breakpoint and inspect the error to see where there is a mismatch between JSON and our Codable model structs
-            print("codable failed - bad data format")
-            print(error.localizedDescription)
+            let decoder = JSONDecoder()
             
-            self.delegate?.neareststationNotFound(reason: .badData)
+            do {
+                let yelpResponse = try decoder.decode(YelpResponse.self, from: data)
+                
+                //HERE - decoding was successful
+                
+                var neareststations = [NearestStation]()
+                
+                
+                print(yelpResponse.businesses)
+                
+                for businesse in yelpResponse.businesses {
+                    
+                    
+                    
+                    let neareststation = NearestStation(name: businesse.name)
+                    
+                    
+                    
+                    
+                    neareststations.append(neareststation)
+                    
+                }
+                print(neareststations)
+                
+                self.delegate?.neareststationFound(neareststations)
+                
+                
+            } catch let error {
+                //if we get here, need to set a breakpoint and inspect the error to see where there is a mismatch between JSON and our Codable model structs
+                print("codable failed - bad data format")
+                print(error.localizedDescription)
+                
+                self.delegate?.neareststationNotFound(reason: .badData)
+            }
         }
+        
+        print("execute request")
+        task.resume()
     }
-    
-    print("execute request")
-    task.resume()
-}
 }

@@ -28,11 +28,12 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
     
-//    var nearestStation = [NearestStation](){
-//        didSet{
-//            collectionView.reloadData()
-//        }
-//    }
+    var nearestStations = [NearestStation](){
+        didSet{
+            collectionView.reloadData()
+        }
+        
+    }
     
     
     override func viewDidLoad() {
@@ -40,16 +41,18 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
         
         locationDetector.delegate = self
         fetchLandmarksManager.delegate = self
-//        fetchNearestStationManager.delegate = self
+        fetchNearestStationManager.delegate = self
         
         fetchLandmarks()
-//        fetchneareststation()
+        fetchneareststation()
         
             }
     
-//    private func fetchneareststation(){
-//
-//    }
+    private func fetchneareststation(){
+        
+        
+        locationDetector.findLocation()
+    }
     
     private func fetchLandmarks(){
 //
@@ -61,12 +64,12 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
         loadingNotification.label.text = "Loading"
         
         
-        self.title = stationname
+        //self.title = stationname
         
         
         if(fromSelectedStation == true){
             
-            
+            self.title = stationname
             fetchLandmarksManager.fetchLandmarks(latitude: stationlat, longitude: stationlon)
             
         }else{
@@ -96,7 +99,9 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
+         
         return landmarks.count
+       
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -153,12 +158,14 @@ extension LandMarkViewController: FetchLandMarksDelegate {
             self.landmarks = landmarks
             
             MBProgressHUD.hide(for: self.view, animated: true)
+            self.gameTimer.invalidate()
         }
     }
     
     func landmarksNotFound(reason: FetchLandmarksManager.FailureReason) {
         DispatchQueue.main.async {
             MBProgressHUD.hide(for: self.view, animated: true)
+            self.gameTimer.invalidate()
             
             let alertController = UIAlertController(title: "Problem fetching landmarks", message: reason.rawValue, preferredStyle: .alert)
             
@@ -192,7 +199,7 @@ extension LandMarkViewController: FetchLandMarksDelegate {
 extension LandMarkViewController: LocationDetectorDelegate {
     func locationDetected(latitude: Double, longitude: Double) {
         fetchLandmarksManager.fetchLandmarks(latitude: latitude, longitude: longitude)
-       // fetchNearestStationManager.fetchNearestStation(latitude: latitude, longitude: longitude)
+        fetchNearestStationManager.fetchNearestStation(latitude: latitude, longitude: longitude)
     }
     
     func locationNotDetected() {
@@ -209,45 +216,45 @@ extension LandMarkViewController: LocationDetectorDelegate {
 
 
 
-//extension LandMarkViewController: FetchNearestStationDelegate {
-//
-//    func neareststationFound(_ neareststations: [NearestStation]) {
-//        print("landmarks found - here they are in the controller!")
-//
-//        DispatchQueue.main.async {
-//            self.nearestStation = neareststations
-//
-//            MBProgressHUD.hide(for: self.view, animated: true)
-//        }
-//    }
-//
-//    func neareststationNotFound(reason: FetchNearestStationManager.FailureReason) {
-//        DispatchQueue.main.async {
-//            MBProgressHUD.hide(for: self.view, animated: true)
-//
-//            let alertController = UIAlertController(title: "Problem fetching nearest station", message: reason.rawValue, preferredStyle: .alert)
-//
-//            switch(reason) {
-//            case .noResponse:
-//                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: { (action) in
-//                    self.fetchLandmarks()
-//                })
-//
-//                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler:nil)
-//
-//                alertController.addAction(cancelAction)
-//                alertController.addAction(retryAction)
-//
-//            case .non200Response, .noData, .badData:
-//                let okayAction = UIAlertAction(title: "Okay", style: .default, handler:nil)
-//
-//                alertController.addAction(okayAction)
-//            }
-//
-//            self.present(alertController, animated: true, completion: nil)
-//        }
-//
-//
-//
-//    }
+extension LandMarkViewController: FetchNearestStationDelegate {
 
+    func neareststationFound(_ neareststations: [NearestStation]) {
+        print("Nearest station found - here they are in the controller!")
+
+        DispatchQueue.main.async {
+            self.nearestStations = neareststations
+            print(self.nearestStations)
+            self.title = self.nearestStations[0].name
+        }
+    }
+
+    func neareststationNotFound(reason: FetchNearestStationManager.FailureReason) {
+        DispatchQueue.main.async {
+            
+            let alertController = UIAlertController(title: "Problem fetching nearest station", message: reason.rawValue, preferredStyle: .alert)
+
+            switch(reason) {
+            case .noResponse:
+                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: { (action) in
+                    self.fetchLandmarks()
+                })
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler:nil)
+
+                alertController.addAction(cancelAction)
+                alertController.addAction(retryAction)
+
+            case .non200Response, .noData, .badData:
+                let okayAction = UIAlertAction(title: "Okay", style: .default, handler:nil)
+
+                alertController.addAction(okayAction)
+            }
+
+            self.present(alertController, animated: true, completion: nil)
+        }
+
+
+
+    }
+
+}

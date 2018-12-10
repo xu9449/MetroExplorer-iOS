@@ -10,7 +10,7 @@ import Foundation
 
 struct StationModel {
     let name: String
-    let address: String
-    let lat: Double
-    let lon: Double 
+    let address: String?
+    let lat: Double?
+    let lon: Double?
 }

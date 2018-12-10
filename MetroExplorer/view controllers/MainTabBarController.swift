@@ -10,38 +10,26 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     var MyFavLandMarks = [FavLandmark]()
+    let fetchLandmarksManager = FetchLandmarksManager()
+    
     @IBOutlet weak var TabBar: UITabBar!
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         print("ddd")
-
+        showbadgeValue()
+        
     }
     override func viewDidLoad() {
+        showbadgeValue()
         super.viewDidLoad()
         tabBar.barTintColor = UIColor(red: 38/255, green: 196/255, blue: 133/255, alpha: 1)
-
-        // Do any additional setup after loading the view.
+        
     }
     
-//    override var shouldAutorotate: Bool {
-//        if let viewController = self.viewControllers?[self.selectedIndex] {
-//            return viewController.shouldAutorotate
-//        }
-//        return super.shouldAutorotate
-//    }
-//    
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        if let viewController = self.viewControllers?[self.selectedIndex] {
-//            return viewController.supportedInterfaceOrientations
-//        }
-//        return super.supportedInterfaceOrientations
-//    }
-//    
-//    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-//        if let viewController = self.viewControllers?[self.selectedIndex] {
-//            return viewController.preferredInterfaceOrientationForPresentation
-//        }
-//        return super.preferredInterfaceOrientationForPresentation
-//    }
+     func showbadgeValue(){
+        
+        MyFavLandMarks = PersistenceManager.sharedInstance.fetchFavLandmarks()
+        tabBar.items?[1].badgeValue = String(MyFavLandMarks.count)    }
+
 
     /*
     // MARK: - Navigation
