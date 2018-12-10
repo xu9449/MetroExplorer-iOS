@@ -13,5 +13,7 @@ struct Landmark{
     let imageurl: URL?
     let rating: Double?
     let location: String?
+    let lat: Double?
+    let lon: Double?
     
 }

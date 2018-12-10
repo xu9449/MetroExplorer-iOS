@@ -22,7 +22,7 @@ struct Businesses: Codable {
     let image_url: URL?
     let rating: Double?
     let location: Location
-    
+    let coordinates: Coordinates
  
 
 
@@ -33,7 +33,12 @@ struct Location: Codable {
     let display_address: [String]?
 }
 
-
+struct Coordinates: Codable {
+    
+    let latitude: Double
+    let longitude: Double
+    
+}
 
 
 

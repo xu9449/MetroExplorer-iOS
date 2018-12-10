@@ -109,7 +109,9 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
         vc?.name = landmark.name ?? "nil"
         vc?.address = landmark.location ?? "nil"
         vc?.rating = landmark.rating
-        vc?.imageurl = landmark.imageurl    
+        vc?.imageurl = landmark.imageurl
+        vc?.lat = landmark.lat
+        vc?.lon = landmark.lon
         self.navigationController?.pushViewController(vc!, animated: true)
 
         
