@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class MetroStationsViewController: UITableViewController {
+class MetroStationsViewController: UITableViewController, UISearchBarDelegate {
     var fromSelectedStation = true
     var stationlat = 0.0
     var stationlon = 0.0
@@ -19,13 +19,14 @@ class MetroStationsViewController: UITableViewController {
     
     @IBOutlet var tblView: UITableView!
     
-    var stations = [StationModel]() {
+    var stations = [StationModel]()
+    var currentStations = [StationModel]() {
         didSet{
             tableView.reloadData()
         }
     }
-
-//    var searchStation = [StationModel]()
+    
+    //    var searchStation = [StationModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,25 @@ class MetroStationsViewController: UITableViewController {
         loadingNotification.label.text = "Loading"
         
         fetchMetroStationManager.fetchStations()
+        setUpSearchBar()
+    }
+    
+    private func setUpSearchBar(){
+        searchBar.delegate = self
+    }
+    
+    //Search Bar
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            currentStations = stations;
+            return
+        }
+        currentStations = stations.filter({station -> Bool in
+            guard let text = searchBar.text else {return false}
+            return station.name.contains(text)
+        })
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,19 +65,20 @@ class MetroStationsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {        
-        return stations.count
+        //        return stations.count
+        return currentStations.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StationCell", for: indexPath) as!
         StationTableViewCell
-     
-        let station = stations[indexPath.row]
+        
+        let station = currentStations[indexPath.row]
         cell.stationNameLabel.text = station.name
         cell.stationAddressLabel.text = station.address
         
-      
+        
         return cell
     }
     
@@ -69,7 +90,7 @@ class MetroStationsViewController: UITableViewController {
         vc2?.fromSelectedStation = true
         vc2?.stationname = station.name
         self.navigationController?.pushViewController(vc2!, animated: true)
-
+        
     }
     
 }
@@ -86,7 +107,7 @@ extension MetroStationsViewController: FetchStationDelegate {
         print(stations.count)
         DispatchQueue.main.async {
             self.stations = stations
-            
+            self.currentStations = stations
             MBProgressHUD.hide(for: self.view, animated: true)
             
         }
@@ -123,8 +144,4 @@ extension MetroStationsViewController: FetchStationDelegate {
     }
 }
 
-//extension MetroStationsViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-//        searchStation = stations.filter($0.prefix(searchText.count)})
-//    }
-//}
+

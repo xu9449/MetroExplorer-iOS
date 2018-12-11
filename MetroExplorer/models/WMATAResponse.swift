@@ -20,14 +20,11 @@ struct Stations: Codable {
     let Name: String
     let Lat: Double
     let Lon: Double
-
-    
+        
 }
 
 struct Address: Codable {
     
-
     let Street: String
-
     
 }

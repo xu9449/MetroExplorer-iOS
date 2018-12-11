@@ -12,4 +12,5 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var landmarksImage: UIImageView!
     @IBOutlet weak var MyLabel: UILabel!
+    
 }

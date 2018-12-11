@@ -9,8 +9,10 @@
 import Foundation
 
 protocol FetchNearestStationDelegate {
+    
     func neareststationFound(_ nearestStation: [NearestStation])
     func neareststationNotFound(reason: FetchNearestStationManager.FailureReason)
+    
 }
 
 class FetchNearestStationManager{
@@ -46,20 +48,19 @@ class FetchNearestStationManager{
         }
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            //PUT CODE HERE TO RUN UPON COMPLETION
-            print("request complete")
             
+            print("request complete")
             
             guard let response = response as? HTTPURLResponse else {
                 
-                
                 self.delegate?.neareststationNotFound(reason: .noResponse)
                 
-                
                 return
+                
             }
             
             guard response.statusCode == 200 else {
+                
                 self.delegate?.neareststationNotFound(reason: .non200Response)
                 
                 return
@@ -67,7 +68,6 @@ class FetchNearestStationManager{
             //HERE - response is NOT nil and IS 200
             
             guard let data = data else {
-                
                 
                 self.delegate?.neareststationNotFound(reason: .noData)
                 
@@ -79,36 +79,27 @@ class FetchNearestStationManager{
             do {
                 let yelpResponse = try decoder.decode(YelpResponse.self, from: data)
                 
-                //HERE - decoding was successful
-                
                 var neareststations = [NearestStation]()
-                
                 
                 print(yelpResponse.businesses)
                 
                 for businesse in yelpResponse.businesses {
                     
-                    
-                    
                     let neareststation = NearestStation(name: businesse.name)
-                    
-                    
-                    
                     
                     neareststations.append(neareststation)
                     
                 }
-                print(neareststations)
                 
                 self.delegate?.neareststationFound(neareststations)
                 
-                
             } catch let error {
-                //if we get here, need to set a breakpoint and inspect the error to see where there is a mismatch between JSON and our Codable model structs
+                
                 print("codable failed - bad data format")
                 print(error.localizedDescription)
                 
                 self.delegate?.neareststationNotFound(reason: .badData)
+                
             }
         }
         

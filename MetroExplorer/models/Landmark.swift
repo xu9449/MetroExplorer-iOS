@@ -9,6 +9,7 @@
 import Foundation
 
 struct Landmark{
+    
     let name: String?
     let imageurl: URL?
     let rating: Double?

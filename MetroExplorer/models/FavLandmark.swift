@@ -9,8 +9,10 @@
 import Foundation
 
 struct FavLandmark: Codable{
+    
     let name: String?
     let imageurl: URL?
     let location: String?
     let date: String?
+    
 }

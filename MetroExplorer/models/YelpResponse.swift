@@ -12,25 +12,22 @@ struct YelpResponse: Codable {
     
     let businesses: [Businesses]
     
-
-    
 }
 
 struct Businesses: Codable {
-   
+    
     let name: String?
     let image_url: URL?
     let rating: Double?
     let location: Location
     let coordinates: Coordinates
- 
-
-
+    
 }
 
 struct Location: Codable {
     
     let display_address: [String]?
+    
 }
 
 struct Coordinates: Codable {

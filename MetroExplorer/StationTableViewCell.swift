@@ -14,10 +14,9 @@ class StationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var stationAddressLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
 }
