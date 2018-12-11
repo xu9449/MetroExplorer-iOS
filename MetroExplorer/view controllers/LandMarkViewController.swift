@@ -21,7 +21,7 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
     var stationlat = 0.0
     var stationlon = 0.0
     var stationname = " "
-    var gameTimer: Timer!
+    
     
     var landmarks = [Landmark](){
         didSet{
@@ -44,19 +44,11 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
         fetchNearestStationManager.delegate = self
         
         fetchLandmarks()
-        fetchneareststation()
-        
-    }
-    
-    private func fetchneareststation(){
-        
-        locationDetector.findLocation()
         
     }
     
     private func fetchLandmarks(){
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 10,target: self, selector: #selector(runTimeCode), userInfo: nil, repeats: true)
         
         let loadingNotification = MBProgressHUD.showAdded(to: self.view, animated: true)
         loadingNotification.mode = MBProgressHUDMode.indeterminate
@@ -69,19 +61,11 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
             
         }else{
             locationDetector.findLocation()
+            
         }
     }
     
-    @objc private func runTimeCode(){
-        
-        let alertController = UIAlertController(title: "Problem fetching landmarks", message: " ", preferredStyle: .alert)
-        let okayAction = UIAlertAction(title: "Okay", style: .default, handler:nil)
-        
-        alertController.addAction(okayAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-        
-    }
+    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
@@ -138,7 +122,7 @@ extension LandMarkViewController: FetchLandMarksDelegate {
             
             self.landmarks = landmarks
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.gameTimer.invalidate()
+            
             
         }
     }
@@ -148,7 +132,7 @@ extension LandMarkViewController: FetchLandMarksDelegate {
         DispatchQueue.main.async {
             
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.gameTimer.invalidate()
+            
             let alertController = UIAlertController(title: "Problem fetching landmarks", message: reason.rawValue, preferredStyle: .alert)
             
             switch(reason) {
@@ -170,6 +154,8 @@ extension LandMarkViewController: FetchLandMarksDelegate {
             }
             
             self.present(alertController, animated: true, completion: nil)
+            
+            
         }
     }
     
@@ -177,9 +163,11 @@ extension LandMarkViewController: FetchLandMarksDelegate {
 }
 
 extension LandMarkViewController: LocationDetectorDelegate {
-    func locationDetected(latitude: Double, longitude: Double) {
-        fetchLandmarksManager.fetchLandmarks(latitude: latitude, longitude: longitude)
-        fetchNearestStationManager.fetchNearestStation(latitude: latitude, longitude: longitude)
+    func locationDetected(latitude: Double?, longitude: Double?) {
+        locationDetector.gameTimer.invalidate()
+        fetchNearestStationManager.fetchNearestStation(latitude: latitude ?? 38.900140, longitude: longitude ?? -77.049447)
+        //        fetchLandmarksManager.fetchLandmarks(latitude: latitude, longitude: longitude)
+        
     }
     
     func locationNotDetected() {
@@ -187,7 +175,11 @@ extension LandMarkViewController: LocationDetectorDelegate {
         DispatchQueue.main.async {
             
             MBProgressHUD.hide(for: self.view, animated: true)
+            
             let alertController = UIAlertController(title: "Problem fetching location",message:" " ,preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler:nil)
+            
+            alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
             
         }
@@ -204,7 +196,9 @@ extension LandMarkViewController: FetchNearestStationDelegate {
             self.nearestStations = neareststations
             print(self.nearestStations)
             self.title = self.nearestStations[0].name
-            
+            self.stationlat = self.nearestStations[0].lat ?? 38.900140
+            self.stationlon = self.nearestStations[0].lon ?? -77.049447
+            self.fetchLandmarksManager.fetchLandmarks(latitude: self.stationlat, longitude: self.stationlon)
         }
     }
     

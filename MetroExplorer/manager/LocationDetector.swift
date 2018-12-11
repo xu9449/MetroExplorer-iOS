@@ -10,11 +10,12 @@ import Foundation
 import CoreLocation
 
 protocol LocationDetectorDelegate {
-    func locationDetected(latitude: Double, longitude: Double)
-    func locationNotDetected() 
+    func locationDetected(latitude: Double?, longitude: Double?)
+    func locationNotDetected()
 }
 
 class LocationDetector: NSObject {
+    var gameTimer: Timer!
     let locationManager = CLLocationManager()
     
     var delegate: LocationDetectorDelegate?
@@ -26,6 +27,7 @@ class LocationDetector: NSObject {
     }
     
     func findLocation() {
+        
         let permissionStatus = CLLocationManager.authorizationStatus()
         
         switch(permissionStatus) {
@@ -40,9 +42,22 @@ class LocationDetector: NSObject {
             break
         case .authorizedWhenInUse:
             locationManager.requestLocation()
+            gameTimer = Timer.scheduledTimer(timeInterval: 10,target: self, selector: #selector(runTimeCode), userInfo: nil, repeats: true)
+            
         }
     }
+    
+    @objc  func runTimeCode() {
+        self.gameTimer.invalidate()
+        locationManager.stopUpdatingLocation()
+        delegate?.locationNotDetected()
+        
+        
+        
+    }
+    
 }
+
 
 extension LocationDetector: CLLocationManagerDelegate {
     
@@ -50,20 +65,19 @@ extension LocationDetector: CLLocationManagerDelegate {
         //do something with the location
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
-            
             delegate?.locationDetected(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        //handle the error
+        
         print(error.localizedDescription)
         delegate?.locationNotDetected()
     }
     
     //this gets called after user accepts OR denies permission
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //handle this
+        
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
         }
