@@ -61,6 +61,7 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
             
         }else{
             locationDetector.findLocation()
+            locationDetector.gameTimer.invalidate()
             
         }
     }

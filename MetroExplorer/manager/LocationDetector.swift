@@ -48,7 +48,7 @@ class LocationDetector: NSObject {
     }
     
     @objc  func runTimeCode() {
-        self.gameTimer.invalidate()
+        
         locationManager.stopUpdatingLocation()
         delegate?.locationNotDetected()
         
@@ -62,7 +62,7 @@ class LocationDetector: NSObject {
 extension LocationDetector: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //do something with the location
+        
         if let location = locations.last {
             locationManager.stopUpdatingLocation()
             delegate?.locationDetected(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
