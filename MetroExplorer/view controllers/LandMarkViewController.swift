@@ -18,9 +18,9 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
     let fetchLandmarksManager = FetchLandmarksManager()
     let fetchNearestStationManager = FetchNearestStationManager()
     var fromSelectedStation = false
-    var stationlat = 0.0
-    var stationlon = 0.0
-    var stationname = " "
+    var stationlat = Double?(38.900140)
+    var stationlon = Double?(-77.049447)
+    var stationname = String?("Metro Station")
     
     
     var landmarks = [Landmark](){
@@ -57,11 +57,11 @@ class LandMarkViewController: UICollectionViewController, UICollectionViewDelega
         if(fromSelectedStation == true){
             
             self.title = stationname
-            fetchLandmarksManager.fetchLandmarks(latitude: stationlat, longitude: stationlon)
+            fetchLandmarksManager.fetchLandmarks(latitude: stationlat!, longitude: stationlon!)
             
         }else{
             locationDetector.findLocation()
-            locationDetector.gameTimer.invalidate()
+          //  locationDetector.gameTimer.invalidate()
             
         }
     }
@@ -165,9 +165,9 @@ extension LandMarkViewController: FetchLandMarksDelegate {
 
 extension LandMarkViewController: LocationDetectorDelegate {
     func locationDetected(latitude: Double?, longitude: Double?) {
-        locationDetector.gameTimer.invalidate()
+        
         fetchNearestStationManager.fetchNearestStation(latitude: latitude ?? 38.900140, longitude: longitude ?? -77.049447)
-        //        fetchLandmarksManager.fetchLandmarks(latitude: latitude, longitude: longitude)
+        fetchLandmarksManager.fetchLandmarks(latitude: latitude ?? 38.900140, longitude: longitude ?? -77.049447)
         
     }
     
@@ -199,7 +199,7 @@ extension LandMarkViewController: FetchNearestStationDelegate {
             self.title = self.nearestStations[0].name
             self.stationlat = self.nearestStations[0].lat ?? 38.900140
             self.stationlon = self.nearestStations[0].lon ?? -77.049447
-            self.fetchLandmarksManager.fetchLandmarks(latitude: self.stationlat, longitude: self.stationlon)
+            self.fetchLandmarksManager.fetchLandmarks(latitude: self.stationlat!, longitude: self.stationlon!)
         }
     }
     

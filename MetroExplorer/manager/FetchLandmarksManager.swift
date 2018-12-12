@@ -30,16 +30,24 @@ class FetchLandmarksManager{
     
     let imageURL = URL(string:"https://i.pinimg.com/236x/d6/45/5e/d6455ee8a3b0cb4495f141d3076db3d7--psy-kawaii.jpg")
     
+    
     func fetchLandmarks(latitude: Double, longitude: Double) {
         
         var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
-        
+//        let parameters = ["term":"landmark","latitude":String(latitude),"longitude": String(longitude)]
+//        var queryItems = [URLQueryItem]()
+//
+//        for (key, value) in parameters {
+//            queryItems.append(URLQueryItem(name: key, value: value))
+//        }
+        let la = String(latitude)
+        let lo = String(longitude)
         urlComponents.queryItems = [
-            
+
             URLQueryItem(name: "term", value: "landmark"),
-            URLQueryItem(name: "latitude", value: String(latitude)),
-            URLQueryItem(name: "longitude", value: String(longitude))
-            
+            URLQueryItem(name: "latitude", value: la),
+            URLQueryItem(name: "longitude", value: lo)
+
         ]
         
         let headers = ["Authorization":"Bearer zjH3xIw86DTgjpgtPB7tnE4Bt1Fyw-5tMV6REva6qBxtt8x7s5wlaARRoQYN8hZjs6hrS2mWAq9hQrvch__9oY6Pa61MjN5YPtYuSycOkerOf7Uvl8SgpbH6k0EEXHYx"]
@@ -47,6 +55,7 @@ class FetchLandmarksManager{
         
         var request = URLRequest(url:url)
         request.httpMethod = "GET"
+        
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }

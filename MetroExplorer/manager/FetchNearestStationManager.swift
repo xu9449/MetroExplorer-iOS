@@ -85,7 +85,7 @@ class FetchNearestStationManager{
                 
                 for businesse in yelpResponse.businesses {
                     
-                    let neareststation = NearestStation(name: businesse.name, lat: businesse.coordinates.latitude, lon: businesse.coordinates.longitude)
+                    let neareststation = NearestStation(name: businesse.name ?? "nil", lat: businesse.coordinates.latitude ?? 40.759211000000001, lon: businesse.coordinates.longitude ?? -73.984638000000003)
                     
                     neareststations.append(neareststation)
                     
