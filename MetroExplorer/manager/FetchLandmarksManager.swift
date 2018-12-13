@@ -17,6 +17,7 @@ protocol FetchLandMarksDelegate {
 
 class FetchLandmarksManager{
     
+    let locationDetector = LocationDetector()
     enum FailureReason: String {
         
         case noResponse = "No response received" //allow the user to try again
@@ -34,12 +35,7 @@ class FetchLandmarksManager{
     func fetchLandmarks(latitude: Double, longitude: Double) {
         
         var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
-//        let parameters = ["term":"landmark","latitude":String(latitude),"longitude": String(longitude)]
-//        var queryItems = [URLQueryItem]()
-//
-//        for (key, value) in parameters {
-//            queryItems.append(URLQueryItem(name: key, value: value))
-//        }
+
         let la = String(latitude)
         let lo = String(longitude)
         urlComponents.queryItems = [
@@ -61,6 +57,8 @@ class FetchLandmarksManager{
         }
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            
             
             print("request complete")
             
@@ -101,16 +99,14 @@ class FetchLandmarksManager{
                 var landmarks = [Landmark]()
                 
                 for businesse in yelpResponse.businesses {
-                    
-                    let address = businesse.location.display_address?.joined(separator: " ")
-                    let imageURL = businesse.image_url
-                    let landmark = Landmark(name: businesse.name, imageurl: imageURL, rating: businesse.rating ?? 0, location: address, lat: businesse.coordinates.latitude, lon: businesse.coordinates.longitude)
-                    
+                    let optionalurl = URL(string: "https://i.pinimg.com/236x/d6/45/5e/d6455ee8a3b0cb4495f141d3076db3d7--psy-kawaii.jpg")
+                    let address = businesse.location.display_address?.joined(separator: " ") 
+                    let imageURL = "\(businesse.image_url ?? optionalurl!)"
+                    let landmark = Landmark(name: businesse.name, imageurl: imageURL, rating: businesse.rating ?? 0.0 , location: address, lat: businesse.coordinates.latitude ?? 38.999947 , lon: businesse.coordinates.longitude ?? -77.097253 )
                     
                     landmarks.append(landmark)
                     
                 }
-                
                 
                 print(landmarks)
                 

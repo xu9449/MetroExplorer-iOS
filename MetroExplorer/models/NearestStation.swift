@@ -10,7 +10,7 @@ import Foundation
 
 struct NearestStation: Codable {
     
-    let name: String?
-    let lat: Double?
-    let lon: Double?
+    let name: String
+    let lat: Double
+    let lon: Double
 }

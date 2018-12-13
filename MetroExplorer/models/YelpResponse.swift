@@ -15,8 +15,8 @@ struct YelpResponse: Codable {
 }
 
 struct Businesses: Codable {
-    
-    let name: String?
+     let imageURL = URL(string:"https://i.pinimg.com/236x/d6/45/5e/d6455ee8a3b0cb4495f141d3076db3d7--psy-kawaii.jpg")
+    let name: String
     let image_url: URL?
     let rating: Double?
     let location: Location

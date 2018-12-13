@@ -10,11 +10,11 @@ import Foundation
 
 struct Landmark{
     
-    let name: String?
-    let imageurl: URL?
+    let name: String
+    let imageurl: String?
     let rating: Double?
     let location: String?
-    let lat: Double?
-    let lon: Double?
+    let lat: Double
+    let lon: Double
     
 }

@@ -26,8 +26,6 @@ class MetroStationsViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    //    var searchStation = [StationModel]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,7 +63,7 @@ class MetroStationsViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {        
-        //        return stations.count
+        
         return currentStations.count
     }
     
@@ -85,24 +83,19 @@ class MetroStationsViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let station = stations[indexPath.row]
         let vc2 = storyboard?.instantiateViewController(withIdentifier:"LandMarkViewController")as?LandMarkViewController
-        vc2?.stationlat = station.lat ?? 38.900140
-        vc2?.stationlon = station.lon ?? -77.049447
+        vc2?.stationlat = station.lat
+        vc2?.stationlon = station.lon
         vc2?.fromSelectedStation = true
-        vc2?.stationname = station.name
+        vc2?.stationname = station.name 
         self.navigationController?.pushViewController(vc2!, animated: true)
-        
     }
-    
 }
-
-
 
 extension MetroStationsViewController: FetchStationDelegate {
     
     
-    
-    
     func stationFound(_ stations: [StationModel]) {
+        
         print("stations found - here they are in the controller!")
         print(stations.count)
         DispatchQueue.main.async {
@@ -115,11 +108,10 @@ extension MetroStationsViewController: FetchStationDelegate {
     }
     
     func stationsNotFound(reason: FetchMetroStationsManager.FailureReason) {
-        let fetchMetroStationManager = FetchMetroStationsManager()
         
+        let fetchMetroStationManager = FetchMetroStationsManager()
         DispatchQueue.main.async {
-            MBProgressHUD.hide(for: self.view, animated: true)
-            
+            MBProgressHUD.hide(for: self.view, animated: true)            
             let alertController = UIAlertController(title: "Problem fetching location", message: reason.rawValue, preferredStyle: .alert)
             
             switch(reason) {

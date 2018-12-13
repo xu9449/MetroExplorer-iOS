@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 protocol LocationDetectorDelegate {
-    func locationDetected(latitude: Double?, longitude: Double?)
+    func locationDetected(latitude: Double, longitude: Double)
     func locationNotDetected()
 }
 
@@ -51,8 +51,6 @@ class LocationDetector: NSObject {
         
         locationManager.stopUpdatingLocation()
         delegate?.locationNotDetected()
-        
-        
         
     }
     

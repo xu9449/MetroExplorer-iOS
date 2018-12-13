@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+
 class StationDetailViewController: UIViewController {
     
     var name = ""
@@ -55,18 +56,15 @@ class StationDetailViewController: UIViewController {
         let timeString = "The saving time is: \(dateFormatter.string(from: Date() as Date))"
         let favdate = timeString
         let favLandmark = FavLandmark(name: favname!, imageurl: favimageUrl!, location: favaddress! ,date: favdate)
-        
+        // update the favorite view
         PersistenceManager.sharedInstance.saveLandmark(favlandmark: favLandmark)
-        MainTabBarController().viewDidLoad()
-        
         
     }
     
-    //  Share the detail of the landmark to others
-    
+    //  Press the Share Button: share the detail of the landmark to others.
     @IBAction func ShareButtonPressed(_ sender: Any) {
         
-        let shareText = "check out my favorite landmark." + "Name: " + name + "Address: " + address
+        let shareText = "Check out my favorite landmark." + "\nName: " + name + "\nAddress: " + address
         let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
     }
@@ -81,7 +79,7 @@ class StationDetailViewController: UIViewController {
         }else {
             self.DetailRatingLabel.text = "N/A"
         }
-        self.DetailImage.load(url: imageurl!)
+        self.DetailImage.load(url: imageurl ?? URL(string: "https://i.pinimg.com/236x/d6/45/5e/d6455ee8a3b0cb4495f141d3076db3d7--psy-kawaii.jpg")!)
         
     }
 }

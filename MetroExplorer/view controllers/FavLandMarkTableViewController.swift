@@ -57,8 +57,8 @@ class FavLandMarkTableViewController: UITableViewController {
         let favlandmark = favLandmarks[indexPath.row]
         
         cell.AddressLabel.text = favlandmark.location
-        cell.DateLabel.text = String(favlandmark.date!)
-        cell.LandmarkImage.load(url: favlandmark.imageurl!)
+        cell.DateLabel.text = String(favlandmark.date)
+        cell.LandmarkImage.load(url: favlandmark.imageurl)
         cell.NameLabel.text = favlandmark.name
         
         return cell

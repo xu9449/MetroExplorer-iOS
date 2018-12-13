@@ -134,8 +134,8 @@
 			children = (
 				9DEB3E7421AA12D200B58A21 /* StationDetailViewController.swift */,
 				9DEB3E8221AD29D100B58A21 /* MenuViewController.swift */,
-				9DEB3E8421AD2A9800B58A21 /* LandMarkViewController.swift */,
 				9DEB3E8621AD2B9900B58A21 /* MetroStationsViewController.swift */,
+				9DEB3E8421AD2A9800B58A21 /* LandMarkViewController.swift */,
 				9DB267C921B718A400771A11 /* FavLandMarkTableViewController.swift */,
 				9DA4491021BBB71B00F8B3F4 /* MainTabBarController.swift */,
 			);

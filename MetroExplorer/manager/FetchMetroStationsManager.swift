@@ -27,14 +27,10 @@ class FetchMetroStationsManager {
     func fetchStations() {
         
         let urlString = "https://api.wmata.com/Rail.svc/json/jStations"
-        //let parameters = ["LineCode":"GR"]
+        
         let headers = ["api_key":"1a0a683e85d84207babfbae2647236ba"]
         
-        var urlComponents = URLComponents(string:urlString)
-        
-        var queryItems = [URLQueryItem]()
-        
-        urlComponents?.queryItems = queryItems
+        let urlComponents = URLComponents(string:urlString)
         
         var request = URLRequest(url: (urlComponents?.url)!)
         request.httpMethod = "GET"
@@ -62,16 +58,13 @@ class FetchMetroStationsManager {
                 return
             }
             
-            
-            
             guard let data = data else {
                 
                 self.delegate?.stationsNotFound(reason: .noData)
                 
                 return
             }
-            
-            
+           
             
             let decoder = JSONDecoder()
             
@@ -90,8 +83,7 @@ class FetchMetroStationsManager {
                 print(stations)
                 
                 self.delegate?.stationFound(stations)
-                
-                
+                                
             } catch let error {
                 
                 print("codable failed - bad data format")
